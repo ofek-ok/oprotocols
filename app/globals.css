@@ -1078,3 +1078,110 @@ button{color:inherit}
     padding-right:18px !important;
   }
 }
+
+
+/* Rotator cuff close-up */
+.rotator-focus{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:18px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+}
+.rotator-focus-copy{
+  padding:24px;
+}
+.rotator-focus-kicker{
+  display:block;
+  margin-bottom:6px;
+  color:#748291;
+  font-size:11px;
+  font-weight:700;
+}
+.rotator-focus h3{
+  margin:0;
+  font-size:24px;
+}
+.rotator-focus-copy>p{
+  margin:10px 0 18px;
+  color:#64717f;
+  font-size:13px;
+  line-height:1.7;
+}
+.rotator-muscle-list{
+  display:grid;
+  gap:10px;
+}
+.rotator-muscle-list>div{
+  padding-top:10px;
+  border-top:1px solid #edf0f3;
+}
+.rotator-muscle-list>div:first-child{
+  border-top:0;
+  padding-top:0;
+}
+.rotator-muscle-list strong{
+  display:block;
+  direction:ltr;
+  text-align:right;
+  font-size:13px;
+  color:#263746;
+}
+.rotator-muscle-list span{
+  display:block;
+  margin-top:2px;
+  font-size:11px;
+  color:#7b8997;
+}
+.rotator-muscle-list p{
+  margin:5px 0 0;
+  color:#64717f;
+  font-size:11px;
+  line-height:1.55;
+}
+.rotator-focus-image{
+  position:relative;
+  min-height:430px;
+  background:#f7f9fb;
+  border-right:1px solid var(--line);
+}
+.rotator-focus-image img{
+  object-fit:contain;
+  padding:28px;
+}
+.rotator-focus-image small{
+  position:absolute;
+  bottom:9px;
+  left:12px;
+  right:12px;
+  text-align:center;
+  color:#87939f;
+  font-size:8px;
+}
+@media(max-width:900px){
+  .rotator-focus{
+    grid-template-columns:1fr;
+  }
+  .rotator-focus-image{
+    min-height:360px;
+    border-right:0;
+    border-top:1px solid var(--line);
+  }
+}
+@media(max-width:620px){
+  .rotator-focus-copy{
+    padding:18px 15px;
+  }
+  .rotator-focus h3{
+    font-size:21px;
+  }
+  .rotator-focus-image{
+    min-height:300px;
+  }
+  .rotator-focus-image img{
+    padding:16px;
+  }
+}
