@@ -849,3 +849,109 @@ button{color:inherit}
     padding-right:18px !important;
   }
 }
+
+
+/* Anatomy view tabs and schematics */
+.anatomy-tabs{
+  display:flex;
+  gap:8px;
+  margin:0 0 14px;
+  flex-wrap:wrap;
+}
+.anatomy-tabs button{
+  border:1px solid #d4dde5;
+  background:#fff;
+  color:#526170;
+  border-radius:8px;
+  padding:9px 13px;
+  font-size:12px;
+  cursor:pointer;
+}
+.anatomy-tabs button.active{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
+}
+.anatomy-schematic{
+  position:absolute;
+  inset:0;
+  background:#f7f9fb;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.anatomy-schematic svg{
+  width:100%;
+  height:100%;
+  max-height:520px;
+}
+.schematic-caption{
+  position:absolute;
+  top:16px;
+  right:18px;
+  font-size:10px;
+  color:#778593;
+}
+.svg-view-title{
+  font-size:16px;
+  fill:#43515e;
+  font-weight:700;
+}
+.bone{
+  fill:#e4e9ed;
+  stroke:#9aa7b3;
+  stroke-width:3;
+}
+.humerus-line{
+  fill:none;
+  stroke:#9aa7b3;
+  stroke-width:22;
+  stroke-linecap:round;
+}
+.muscle{
+  stroke:#7b93aa;
+  stroke-width:2;
+  opacity:.88;
+}
+.muscle-a{fill:#bfd4e6}
+.muscle-b{fill:#a7c2db}
+.muscle-c{fill:#91b1cf}
+.muscle-d{fill:#b2c9dc}
+.marker-dot{
+  fill:#fff;
+  stroke:#4f7eaa;
+  stroke-width:3;
+}
+.marker-text{
+  font-size:12px;
+  fill:#315f89;
+  font-weight:700;
+}
+.ligament-line{
+  fill:none;
+  stroke:#738aa0;
+  stroke-width:8;
+  stroke-linecap:round;
+}
+.tendon-line{
+  fill:none;
+  stroke:#4f7eaa;
+  stroke-width:6;
+  stroke-linecap:round;
+}
+@media(max-width:620px){
+  .anatomy-tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+  .anatomy-tabs button:last-child{
+    grid-column:1/-1;
+  }
+  .anatomy-schematic{
+    padding:14px 8px;
+  }
+  .svg-view-title{
+    font-size:14px;
+  }
+}
