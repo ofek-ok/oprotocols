@@ -6,6 +6,13 @@ import { useMemo, useState } from 'react';
 import { exerciseLibrary } from '@/lib/protocol';
 
 const filters = ['All','Mobility','Strength','Control','Capacity'] as const;
+const filterLabels: Record<(typeof filters)[number], string> = {
+  All: 'הכול',
+  Mobility: 'מוביליטי',
+  Strength: 'חיזוק',
+  Control: 'שליטה',
+  Capacity: 'יכולת'
+};
 
 export default function ExerciseLibrary() {
   const [q, setQ] = useState('');
@@ -33,19 +40,19 @@ export default function ExerciseLibrary() {
         </Link>
 
         <nav className="topnav" aria-label="Main navigation">
-          <Link href="/">Protocols</Link>
-          <Link href="/exercises" className="active">Exercises</Link>
-          <span className="nav-coming-soon">Knowledge <em>בקרוב</em></span>
+          <Link href="/">פרוטוקולים</Link>
+          <Link href="/exercises" className="active">תרגילים</Link>
+          <span className="nav-coming-soon">ידע <em>בקרוב</em></span>
         </nav>
 
-        <div className="status-pill">EXERCISE LIBRARY</div>
+        
       </header>
 
       <main className="library-page">
         <section className="library-hero">
           <div>
-            <small>OKONSKI PERFORMANCE · CLINICAL TOOLKIT</small>
-            <h1>Exercise Library</h1>
+            <small>OKONSKI PERFORMANCE · ספריית תרגילים</small>
+            <h1>ספריית תרגילים</h1>
             <p>
               מאגר התרגילים של הפרוטוקולים. חפש לפי שם, אזור או סוג תרגיל וקבל
               מיד את המינון והתדירות שנקבעו בפרוטוקול.
