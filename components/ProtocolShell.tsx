@@ -5,7 +5,11 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import {
   anatomyMap,
+  anteriorShoulderMuscles,
   mobilityExercises,
+  posteriorShoulderMuscles,
+  shoulderFunction,
+  shoulderStructure,
   strengthExercises,
   treatmentOptions
 } from '@/lib/protocol';
@@ -169,64 +173,92 @@ export default function ProtocolShell() {
               <div>
                 <span>01</span>
                 <h2>אנטומיית הכתף</h2>
-                <p>הכתף היא מערכת של עצמות, מפרקים, שרירים, גידים ורצועות שעובדים יחד.</p>
-              </div>
-            </div>
-
-            <div className="anatomy-stage simple-anatomy">
-              <div className="anatomy-figure">
-                <Image
-                  src="/assets/shoulder-anatomy.png"
-                  alt="איור אנטומי של הכתף"
-                  fill
-                  sizes="(max-width: 900px) 100vw, 50vw"
-                  priority
-                />
-                {anatomyMap
-                  .filter((item) => ['1','2','3','5'].includes(String(item.number)))
-                  .map((item) => (
-                    <span
-                      className="anatomy-label-marker"
-                      key={item.number}
-                      style={{ top: item.position.top, left: item.position.left }}
-                    >
-                      {item.label}
-                    </span>
-                  ))}
-              </div>
-
-              <div className="anatomy-key">
-                {anatomyMap
-                  .filter((item) => ['1','2','3','4','4.1','4.2','4.3','4.4','5','6','7'].includes(String(item.number)))
-                  .map((item) => {
-                    const isCuffMuscle = String(item.number).startsWith('4.');
-                    return (
-                      <article
-                        key={item.number}
-                        className={isCuffMuscle ? 'anatomy-readable-item anatomy-cuff-muscle' : 'anatomy-readable-item'}
-                      >
-                        <div>
-                          <div className="anatomy-name-line">
-                            <h3>{item.hebrew}</h3>
-                            <small>{item.name}</small>
-                          </div>
-                          <div className="anatomy-type">{item.type}</div>
-                          <p>{item.description}</p>
-                        </div>
-                      </article>
-                    );
-                  })}
-              </div>
-            </div>
-
-            <section className="rotator-focus rotator-focus-simple" aria-labelledby="rotator-focus-title">
-              <div className="rotator-focus-copy">
-                <span className="rotator-focus-kicker">מבט מקרוב</span>
-                <h3 id="rotator-focus-title">השרוול המסובב</h3>
                 <p>
-                  השרוול המסובב מורכב מארבעה שרירים. כדי שיהיה ברור איפה כל אחד נמצא,
-                  כל שריר מוצג כאן בנפרד ומודגש באדום.
+                  הכתף היא מערכת של עצמות, מפרקים, שרירים, גידים ורצועות שעובדים יחד.
+                  כדי להבין אותה באמת, צריך להכיר גם את המבנה וגם את הדרך שבה כל החלקים משתפים פעולה.
                 </p>
+              </div>
+            </div>
+
+            <div className="anatomy-block">
+              <div className="anatomy-block-heading">
+                <span>1</span>
+                <div>
+                  <h3>מבנה הכתף</h3>
+                  <p>העצמות, המפרקים והמבנים הפסיביים שמרכיבים את הבסיס של מערכת הכתף.</p>
+                </div>
+              </div>
+
+              <div className="anatomy-stage simple-anatomy">
+                <div className="anatomy-figure">
+                  <Image
+                    src="/assets/shoulder-anatomy.png"
+                    alt="איור אנטומי של הכתף"
+                    fill
+                    sizes="(max-width: 900px) 100vw, 50vw"
+                    priority
+                  />
+                  {anatomyMap
+                    .filter((item) => ['1','2','3','5'].includes(String(item.number)))
+                    .map((item) => (
+                      <span
+                        className="anatomy-label-marker"
+                        key={item.number}
+                        style={{ top: item.position.top, left: item.position.left }}
+                      >
+                        {item.label}
+                      </span>
+                    ))}
+                </div>
+
+                <div className="anatomy-overview-copy">
+                  <div className="anatomy-overview-group">
+                    <h4>עצמות ומבנים גרמיים</h4>
+                    {shoulderStructure.bones.map((item) => (
+                      <article key={item.name}>
+                        <strong>{item.hebrew}</strong>
+                        <small>{item.name}</small>
+                        <p>{item.text}</p>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="anatomy-info-grid">
+                <div className="anatomy-overview-group">
+                  <h4>המפרקים של הכתף</h4>
+                  {shoulderStructure.joints.map((item) => (
+                    <article key={item.name}>
+                      <strong>{item.hebrew}</strong>
+                      <small>{item.name}</small>
+                      <p>{item.text}</p>
+                    </article>
+                  ))}
+                </div>
+
+                <div className="anatomy-overview-group">
+                  <h4>קופסית, לברום, רצועות ובורסה</h4>
+                  {shoulderStructure.passive.map((item) => (
+                    <article key={item.name}>
+                      <strong>{item.hebrew}</strong>
+                      <small>{item.name}</small>
+                      <p>{item.text}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="anatomy-block">
+              <div className="anatomy-block-heading">
+                <span>2</span>
+                <div>
+                  <h3>השרוול המסובב</h3>
+                  <p>
+                    ארבעה שרירים עמוקים שעוטפים את מפרק הכתף ומייצבים את ראש עצם הזרוע בזמן תנועה ועומס.
+                  </p>
+                </div>
               </div>
 
               <div className="rotator-muscle-grid">
@@ -235,25 +267,29 @@ export default function ProtocolShell() {
                     name: 'Supraspinatus',
                     hebrew: 'סופרה־ספינטוס',
                     view: 'מבט מאחור',
-                    src: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Supraspinatus_muscle_back.png'
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Supraspinatus_muscle_back.png',
+                    description: 'נמצא מעל קוץ השכמה. מסייע בתחילת הרמת הזרוע ותורם לייצוב ראש עצם הזרוע.'
                   },
                   {
                     name: 'Infraspinatus',
                     hebrew: 'אינפרה־ספינטוס',
                     view: 'מבט מאחור',
-                    src: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/Infraspinatus_muscle_back.png'
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/Infraspinatus_muscle_back.png',
+                    description: 'נמצא מתחת לקוץ השכמה. אחד השרירים המרכזיים בסיבוב חיצוני של הזרוע.'
                   },
                   {
                     name: 'Teres Minor',
                     hebrew: 'טרס מינור',
                     view: 'מבט מאחור',
-                    src: 'https://upload.wikimedia.org/wikipedia/commons/7/75/Teres_minor_muscle_back.png'
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/7/75/Teres_minor_muscle_back.png',
+                    description: 'נמצא מתחת לאינפרה־ספינטוס. מסייע בסיבוב חיצוני ובייצוב האחורי של המפרק.'
                   },
                   {
                     name: 'Subscapularis',
                     hebrew: 'סאב־סקפולריס',
                     view: 'מבט מלפנים',
-                    src: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Subscapularis_muscle_frontal2.png'
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Subscapularis_muscle_frontal2.png',
+                    description: 'נמצא על המשטח הקדמי של השכמה. מבצע בעיקר סיבוב פנימי ותורם ליציבות הקדמית.'
                   }
                 ].map((muscle) => (
                   <article className="rotator-muscle-card" key={muscle.name}>
@@ -270,6 +306,7 @@ export default function ProtocolShell() {
                       <small>{muscle.view}</small>
                       <strong>{muscle.name}</strong>
                       <span>{muscle.hebrew}</span>
+                      <p>{muscle.description}</p>
                     </div>
                   </article>
                 ))}
@@ -278,7 +315,72 @@ export default function ProtocolShell() {
               <div className="rotator-source">
                 השריר המודגש באדום · BodyParts3D / Anatomography · Wikimedia Commons
               </div>
-            </section>
+            </div>
+
+            <div className="anatomy-block">
+              <div className="anatomy-block-heading">
+                <span>3</span>
+                <div>
+                  <h3>החלק הקדמי של הכתף</h3>
+                  <p>השרירים והגידים שמייצרים תנועה, כוח ויציבות בחלק הקדמי של חגורת הכתפיים.</p>
+                </div>
+              </div>
+
+              <div className="muscle-detail-grid">
+                {anteriorShoulderMuscles.map((item) => (
+                  <article key={item.name}>
+                    <div className="muscle-detail-title">
+                      <strong>{item.hebrew}</strong>
+                      <small>{item.name}</small>
+                    </div>
+                    <p><b>איפה נמצא:</b> {item.location}</p>
+                    <p><b>מה הוא עושה:</b> {item.function}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="anatomy-block">
+              <div className="anatomy-block-heading">
+                <span>4</span>
+                <div>
+                  <h3>החלק האחורי והשכמה</h3>
+                  <p>השרירים שמייצבים את השכמה, שולטים במנח שלה ומייצרים תנועות משיכה וסיבוב.</p>
+                </div>
+              </div>
+
+              <div className="muscle-detail-grid">
+                {posteriorShoulderMuscles.map((item) => (
+                  <article key={item.name}>
+                    <div className="muscle-detail-title">
+                      <strong>{item.hebrew}</strong>
+                      <small>{item.name}</small>
+                    </div>
+                    <p><b>איפה נמצא:</b> {item.location}</p>
+                    <p><b>מה הוא עושה:</b> {item.function}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="anatomy-block anatomy-function-block">
+              <div className="anatomy-block-heading">
+                <span>5</span>
+                <div>
+                  <h3>איך הכתף עובדת</h3>
+                  <p>הכתף לא פועלת כשריר או מפרק בודד. הביצוע התקין תלוי בתיאום בין כל המערכת.</p>
+                </div>
+              </div>
+
+              <div className="shoulder-function-grid">
+                {shoulderFunction.map((item) => (
+                  <article key={item.title}>
+                    <h4>{item.title}</h4>
+                    <p>{item.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
           </section>
 
           <section className="protocol-section" id="treatment">
