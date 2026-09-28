@@ -26,7 +26,6 @@ export default function ProtocolShell() {
   const [active, setActive] = useState('overview');
   const [mobileProtocolsOpen, setMobileProtocolsOpen] = useState(false);
   const [guideSticky, setGuideSticky] = useState(false);
-  const [anatomyView, setAnatomyView] = useState<'general' | 'cuff' | 'soft'>('general');
   const progress = useMemo(
     () => sections.findIndex(([id]) => id === active) + 1,
     [active]
@@ -174,124 +173,49 @@ export default function ProtocolShell() {
               </div>
             </div>
 
-            <div className="anatomy-tabs" role="tablist" aria-label="תצוגות אנטומיה">
-              <button
-                type="button"
-                className={anatomyView === 'general' ? 'active' : ''}
-                onClick={() => setAnatomyView('general')}
-              >
-                מבט כללי
-              </button>
-              <button
-                type="button"
-                className={anatomyView === 'cuff' ? 'active' : ''}
-                onClick={() => setAnatomyView('cuff')}
-              >
-                Rotator Cuff
-              </button>
-              <button
-                type="button"
-                className={anatomyView === 'soft' ? 'active' : ''}
-                onClick={() => setAnatomyView('soft')}
-              >
-                רצועות וגידים
-              </button>
-            </div>
-
-            <div className="anatomy-stage">
+            <div className="anatomy-stage simple-anatomy">
               <div className="anatomy-figure">
-                {anatomyView === 'general' && (
-                  <>
-                    <Image
-                      src="/assets/shoulder-anatomy.png"
-                      alt="איור אנטומי כללי של הכתף"
-                      fill
-                      sizes="(max-width: 900px) 100vw, 50vw"
-                      priority
-                    />
-                    {anatomyMap
-                      .filter((item) => ['1','2','3','5'].includes(String(item.number)))
-                      .map((item) => (
-                        <span
-                          className="anatomy-label-marker"
-                          key={item.number}
-                          style={{ top: item.position.top, left: item.position.left }}
-                        >
-                          {item.label}
-                        </span>
-                      ))}
-                  </>
-                )}
-
-                {anatomyView === 'cuff' && (
-                  <div className="anatomy-reference">
-                    <div className="anatomy-image-heading">
-                      <strong>Rotator Cuff</strong>
-                      <span>ארבעה שרירים שעוטפים ומייצבים את מפרק הכתף</span>
-                    </div>
-                    <Image
-                      src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Shoulder_joint.svg"
-                      alt="איור אנטומי של מפרק הכתף ושרירי ה־Rotator Cuff"
-                      fill
-                      unoptimized
-                      sizes="(max-width: 900px) 100vw, 50vw"
-                    />
-                    <div className="anatomy-credit">
-                      מקור: NIAMS / Wikimedia Commons · Public Domain
-                    </div>
-                  </div>
-                )}
-
-                {anatomyView === 'soft' && (
-                  <div className="anatomy-reference">
-                    <div className="anatomy-image-heading">
-                      <strong>רצועות וגידים</strong>
-                      <span>מבנים שתורמים ליציבות ולהעברת כוח סביב המפרק</span>
-                    </div>
-                    <Image
-                      src="https://upload.wikimedia.org/wikipedia/commons/c/c2/202107_Ligament_of_the_shoulder_joint.svg"
-                      alt="איור אנטומי של רצועות מפרק הכתף"
-                      fill
-                      unoptimized
-                      sizes="(max-width: 900px) 100vw, 50vw"
-                    />
-                    <div className="anatomy-credit">
-                      מקור: DBCLS / Wikimedia Commons · CC BY 4.0
-                    </div>
-                  </div>
-                )}
+                <Image
+                  src="/assets/shoulder-anatomy.png"
+                  alt="איור אנטומי של הכתף"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 50vw"
+                  priority
+                />
+                {anatomyMap
+                  .filter((item) => ['1','2','3','5'].includes(String(item.number)))
+                  .map((item) => (
+                    <span
+                      className="anatomy-label-marker"
+                      key={item.number}
+                      style={{ top: item.position.top, left: item.position.left }}
+                    >
+                      {item.label}
+                    </span>
+                  ))}
               </div>
 
               <div className="anatomy-key">
-                {anatomyView === 'cuff' && (
-                  <div className="anatomy-group-intro">
-                    <strong>Rotator Cuff</strong>
-                    <p>
-                      זו לא ישות אחת אלא קבוצה של ארבעה שרירים. כל אחד מהם פועל בכיוון מעט שונה,
-                      ויחד הם שומרים את ראש עצם הזרוע יציב בתוך המפרק בזמן תנועה ועומס.
-                    </p>
-                  </div>
-                )}
-
                 {anatomyMap
-                  .filter((item) => {
-                    const n = String(item.number);
-                    if (anatomyView === 'general') return ['1','2','3','5'].includes(n);
-                    if (anatomyView === 'cuff') return n.startsWith('4.');
-                    return ['6','7'].includes(n);
-                  })
-                  .map((item) => (
-                    <article key={item.number} className="anatomy-readable-item">
-                      <div>
-                        <div className="anatomy-name-line">
-                          <h3>{item.hebrew}</h3>
-                          <small>{item.name}</small>
+                  .filter((item) => ['1','2','3','4','4.1','4.2','4.3','4.4','5','6','7'].includes(String(item.number)))
+                  .map((item) => {
+                    const isCuffMuscle = String(item.number).startsWith('4.');
+                    return (
+                      <article
+                        key={item.number}
+                        className={isCuffMuscle ? 'anatomy-readable-item anatomy-cuff-muscle' : 'anatomy-readable-item'}
+                      >
+                        <div>
+                          <div className="anatomy-name-line">
+                            <h3>{item.hebrew}</h3>
+                            <small>{item.name}</small>
+                          </div>
+                          <div className="anatomy-type">{item.type}</div>
+                          <p>{item.description}</p>
                         </div>
-                        <div className="anatomy-type">{item.type}</div>
-                        <p>{item.description}</p>
-                      </div>
-                    </article>
-                  ))}
+                      </article>
+                    );
+                  })}
               </div>
             </div>
           </section>
