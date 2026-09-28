@@ -3,18 +3,26 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
-import { phases } from '@/lib/protocol';
+import {
+  anatomyGroups,
+  mobilityExercises,
+  phases,
+  strengthExercises,
+  treatmentOptions
+} from '@/lib/protocol';
 
 const sections = [
   ['overview', 'סקירה'],
   ['anatomy', 'אנטומיה'],
-  ['assessment', 'Assessment'],
-  ['phases', 'שלבי הפרוטוקול'],
-  ['load', 'Pain & Load'],
-  ['discharge', 'Discharge']
+  ['treatment', 'טיפול'],
+  ['strength', 'חיזוק'],
+  ['mobility', 'מוביליטי'],
+  ['load', 'Pain & Load']
 ] as const;
 
 const protocols = ['כתף','צוואר','גב תחתון','גב עליון','מרפק','שורש כף יד','ירך','ברך','קרסול'];
+
+const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL || '#booking';
 
 export default function ProtocolShell() {
   const [active, setActive] = useState('overview');
@@ -123,33 +131,34 @@ export default function ProtocolShell() {
         <div className="content-inner">
           <section className="hero" id="overview">
             <div className="hero-copy">
-              <div className="eyebrow">SHOULDER · MASTER PROTOCOL</div>
+              <div className="eyebrow">SHOULDER · COMPLETE GUIDE</div>
               <h1>Shoulder <span>Protocol</span></h1>
-              <h2>פרוטוקול כתף — החזרת תנועה, שליטה ויכולת העמסה</h2>
+              <h2>להבין את הכתף, לטפל בה ולבנות אותה מחדש</h2>
               <p>
-                פרוטוקול קליני סדור המבוסס על מדדים ברורים. מתקדמים כאשר הקריטריונים מתקיימים —
-                לא רק משום שעבר זמן.
+                מדריך מלא לכתף: המבנה האנטומי, תפקיד השרירים והמפרקים, אפשרויות טיפול,
+                חיזוק, מוביליטי וניהול עומס. המטרה היא לא רק להפחית כאב — אלא להחזיר
+                לכתף יכולת תנועה, כוח וסבילות לעומס.
               </p>
 
               <div className="hero-actions">
-                <button onClick={() => jumpTo('assessment')}>התחל ב־Assessment</button>
-                <Link href="/exercises">פתח ספריית תרגילים</Link>
+                <button onClick={() => jumpTo('anatomy')}>התחל מהאנטומיה</button>
+                <a href={BOOKING_URL}>קביעת טיפול</a>
               </div>
 
               <div className="hero-metrics">
-                <div><strong>01</strong><span>Restore Motion</span></div>
-                <div><strong>02</strong><span>Build Control</span></div>
-                <div><strong>03</strong><span>Build Capacity</span></div>
+                <div><strong>01</strong><span>Understand</span></div>
+                <div><strong>02</strong><span>Treat</span></div>
+                <div><strong>03</strong><span>Build</span></div>
               </div>
             </div>
 
             <aside className="hero-summary" aria-label="Protocol summary">
-              <div className="summary-kicker">PROTOCOL AT A GLANCE</div>
-              <div className="summary-row"><span>שלבים</span><strong>3</strong></div>
-              <div className="summary-row"><span>Reassessment</span><strong>7–14 ימים</strong></div>
-              <div className="summary-row"><span>Home plan</span><strong>עד 5 תרגילים</strong></div>
-              <div className="summary-row"><span>Progression</span><strong>Criteria based</strong></div>
-              <button onClick={() => jumpTo('discharge')}>ראה קריטריוני סיום</button>
+              <div className="summary-kicker">IN THIS GUIDE</div>
+              <div className="summary-row"><span>אנטומיה</span><strong>עצמות · מפרקים · שרירים</strong></div>
+              <div className="summary-row"><span>טיפול</span><strong>Core + Adjunct</strong></div>
+              <div className="summary-row"><span>חיזוק</span><strong>{strengthExercises.length} תרגילים</strong></div>
+              <div className="summary-row"><span>מוביליטי</span><strong>{mobilityExercises.length} תרגילים</strong></div>
+              <button onClick={() => jumpTo('strength')}>עבור לתרגילים</button>
             </aside>
           </section>
 
@@ -169,11 +178,12 @@ export default function ProtocolShell() {
 
           <section className="overview-grid">
             <article className="panel statement-panel">
-              <div className="panel-kicker">TARGET OUTCOME</div>
-              <h3>הגדרת הצלחה</h3>
+              <div className="panel-kicker">WHAT THE SHOULDER NEEDS</div>
+              <h3>תנועה + שליטה + כוח + עומס</h3>
               <p>
-                טווח תנועה מלא וסימטרי, כאב שאינו מגביל תפקוד, יכולת הפקת כוח
-                וסבילות לעומס ללא החמרה ב־24 השעות שלאחר הפעילות.
+                הכתף בנויה לטווח תנועה גדול. כדי שהיא תעבוד היטב היא צריכה שילוב בין
+                תנועתיות של המפרק והשכמה, שליטה של השרוול המסובב, כוח של השרירים
+                שסביבה ויכולת להתמודד עם עומס חוזר.
               </p>
               <div className="outcome-flow">
                 <span>MOVE</span><i>→</i><span>CONTROL</span><i>→</i><span>LOAD</span><i>→</i><span>PERFORM</span>
@@ -181,14 +191,12 @@ export default function ProtocolShell() {
             </article>
 
             <article className="panel rules-panel">
-              <div className="panel-kicker">NON-NEGOTIABLES</div>
-              <h3>כללי עבודה</h3>
-              <ul>
-                <li>אין מעבר שלב ללא קריטריוני יציאה.</li>
-                <li>לא משנים יותר ממשתנה עומס אחד בכל פעם.</li>
-                <li>תגובת 24 שעות קובעת את המינון הבא.</li>
-                <li>תוכנית בית: עד 5 תרגילים.</li>
-              </ul>
+              <div className="panel-kicker">IMPORTANT</div>
+              <h3>אין טיפול אחד שמתאים לכולם</h3>
+              <p>
+                כאב כתף יכול להגיע ממקורות שונים ולהגיב אחרת לעומס. טיפול טוב מתחיל
+                בהערכה וממשיך בבחירת הכלים הרלוונטיים — לא באוסף קבוע של טכניקות.
+              </p>
             </article>
           </section>
 
@@ -198,7 +206,7 @@ export default function ProtocolShell() {
               <div><small>UNDERSTAND THE SYSTEM</small><h3>אנטומיית הכתף</h3></div>
             </div>
 
-            <div className="anatomy-layout">
+            <div className="anatomy-layout expanded">
               <div className="anatomy-image">
                 <Image src="/assets/shoulder-anatomy.png" alt="Shoulder anatomy illustration" fill sizes="(max-width: 900px) 100vw, 48vw" />
                 <div className="anatomy-tags">
@@ -210,64 +218,124 @@ export default function ProtocolShell() {
               </div>
 
               <div className="anatomy-copy">
+                <div className="panel-kicker">THE SHOULDER COMPLEX</div>
+                <h4>לא מפרק אחד — מערכת שלמה</h4>
                 <p>
-                  הכתף היא מערכת משולבת של מפרקים, עצמות, גידים, רצועות ושרירים.
-                  מטרת ההערכה אינה למצוא "מבנה אשם", אלא להבין מה מגביל תנועה,
-                  כוח ויכולת העמסה.
+                  הכתף היא מערכת שמחברת בין הזרוע, השכמה, עצם הבריח ובית החזה.
+                  טווח התנועה הגדול שלה נוצר בזכות שילוב בין מבנה גרמי, קפסולה,
+                  רצועות ושליטה שרירית דינמית.
                 </p>
-                <div className="anatomy-list">
-                  {[
-                    ['Glenohumeral Joint','מפרק הכתף העיקרי'],
-                    ['Rotator Cuff','ארבעה שרירים המייצבים ומכוונים את ראש הזרוע'],
-                    ['Scapula','בסיס התנועה של חגורת הכתפיים'],
-                    ['Labrum & Capsule','מבנים התורמים ליציבות'],
-                    ['Biceps Tendon','גיד העובר בחלק הקדמי של הכתף']
-                  ].map(([a,b]) => (
-                    <div key={a}><strong>{a}</strong><span>{b}</span></div>
-                  ))}
-                </div>
               </div>
+            </div>
+
+            <div className="anatomy-groups">
+              {anatomyGroups.map((group, groupIndex) => (
+                <article className="anatomy-group" key={group.title}>
+                  <div className="anatomy-group-head">
+                    <span>{String(groupIndex + 1).padStart(2,'0')}</span>
+                    <h4>{group.title}</h4>
+                  </div>
+                  <div className="anatomy-structure-list">
+                    {group.items.map(([name, text]) => (
+                      <div key={name}>
+                        <strong>{name}</strong>
+                        <p>{text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              ))}
             </div>
           </section>
 
-          <section className="protocol-section" id="assessment">
+          <section className="protocol-section" id="treatment">
             <div className="section-heading">
               <span>03</span>
-              <div><small>BASELINE</small><h3>Entry Assessment</h3></div>
+              <div><small>TREATMENT OPTIONS</small><h3>איך מטפלים בכתף?</h3></div>
             </div>
 
-            <div className="assessment-grid">
-              {[
-                ['PAIN','מנוחה, תנועה, לילה, מיקום ותגובה לעומס'],
-                ['ROM','Flexion · Abduction · ER · IR'],
-                ['STRENGTH','ER · IR · Scaption · Push · Pull'],
-                ['CONTROL','הרמה, הורדה, Upward Rotation, Winging'],
-                ['FUNCTION','פעולות מוגדרות שהלקוח רוצה לבצע ללא הגבלה'],
-                ['24H RESPONSE','תגובה באותו יום ובבוקר שאחרי']
-              ].map(([title,text]) => (
-                <article className="metric-card" key={title}>
-                  <small>{title}</small>
-                  <p>{text}</p>
+            <div className="treatment-intro">
+              <div>
+                <h4>הטיפול נבחר לפי מה שמצאנו בהערכה</h4>
+                <p>
+                  המטרה של טיפול אינה "לשחרר" מבנה אחד, אלא להפחית מגבלות רלוונטיות,
+                  לשפר תנועה ולבנות יכולת. חלק מהכלים הם ליבת התהליך וחלקם יכולים
+                  לשמש כתוספת זמנית.
+                </p>
+              </div>
+              <div className="treatment-legend">
+                <span className="core">CORE</span><b>ליבת התהליך</b>
+                <span className="adjunct">ADJUNCT</span><b>כלי משלים</b>
+                <span className="clinician">CLINICIAN ONLY</span><b>ביצוע מקצועי בלבד</b>
+              </div>
+            </div>
+
+            <div className="treatment-grid">
+              {treatmentOptions.map((item) => (
+                <article className="treatment-card" key={item.title}>
+                  <span className={'treatment-level ' + item.level.toLowerCase().replaceAll(' ','-').replaceAll('/','-')}>
+                    {item.level}
+                  </span>
+                  <h4>{item.title}</h4>
+                  <p>{item.text}</p>
                 </article>
               ))}
             </div>
 
-            <div className="alert-panel">
-              <strong>STOP / REFER</strong>
-              <span>
-                טראומה משמעותית עם ירידה מיידית בתפקוד · עיוות ברור · חשד לפריקה ·
-                אובדן כוח חדש · סימנים נוירולוגיים חדשים · סימנים מערכתיים חריגים
-              </span>
+            <div className="booking-card" id="booking">
+              <div>
+                <small>OKONSKI PERFORMANCE · SHOULDER ASSESSMENT</small>
+                <h4>רוצה לבדוק מה מגביל את הכתף שלך?</h4>
+                <p>
+                  טיפול מתחיל בהערכה של תנועה, כוח ותגובה לעומס, ולאחריה בניית תוכנית
+                  שמתאימה לממצאים שלך.
+                </p>
+              </div>
+              <a href={BOOKING_URL}>קביעת טיפול ←</a>
             </div>
           </section>
 
-          <section className="protocol-section" id="phases">
+          <section className="protocol-section" id="strength">
             <div className="section-heading">
               <span>04</span>
-              <div><small>PROGRESSION</small><h3>שלבי הפרוטוקול</h3></div>
+              <div><small>BUILD CAPACITY</small><h3>חיזוק הכתף</h3></div>
             </div>
 
-            <div className="phase-stack">
+            <div className="exercise-section-intro">
+              <h4>לא עושים את כל התרגילים יחד</h4>
+              <p>
+                בוחרים את התרגילים לפי הטווח, הכוח והתגובה לעומס. המינונים כאן הם
+                נקודת פתיחה כללית לפרוטוקול וניתנים לשינוי בהתאם להערכה.
+              </p>
+            </div>
+
+            <div className="protocol-exercise-grid">
+              {strengthExercises.map((exercise, i) => (
+                <article className="protocol-exercise-card" key={exercise.name}>
+                  <div className="protocol-exercise-top">
+                    <span>{String(i + 1).padStart(2,'0')}</span>
+                    <small>{exercise.target}</small>
+                  </div>
+                  <h4>{exercise.name}</h4>
+                  <p>{exercise.why}</p>
+                  <div className="protocol-exercise-meta">
+                    <div><small>מינון</small><strong>{exercise.dose}</strong></div>
+                    <div><small>תדירות</small><strong>{exercise.frequency}</strong></div>
+                  </div>
+                  <a href={exercise.video} target="_blank" rel="noreferrer">צפה בסרטון YouTube ↗</a>
+                </article>
+              ))}
+            </div>
+
+            <div className="phase-note">
+              <span>CLINICAL PROGRESSION</span>
+              <p>
+                ככל שהשליטה והכוח משתפרים, עוברים בהדרגה מהפעלת כוח בסיסית לעומס,
+                טווח, נפח ומהירות גבוהים יותר.
+              </p>
+            </div>
+
+            <div className="phase-stack compact-phases">
               {phases.map((phase) => (
                 <article className="phase-card" key={phase.number}>
                   <div className="phase-head">
@@ -278,26 +346,43 @@ export default function ProtocolShell() {
                       <p>{phase.summary}</p>
                     </div>
                   </div>
-
-                  <div className="phase-body">
-                    <div className="exercise-table">
-                      <div className="table-row table-head">
-                        <span>Exercise</span><span>Dosage</span><span>Frequency</span>
-                      </div>
-                      {phase.exercises.map(([name,dose,freq]) => (
-                        <div className="table-row" key={name}>
-                          <span data-label="Exercise">{name}</span>
-                          <span data-label="Dosage">{dose}</span>
-                          <span data-label="Frequency">{freq}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="criteria">
-                      <small>EXIT CRITERIA</small>
-                      {phase.criteria.map((c) => <div key={c}>✓ {c}</div>)}
-                    </div>
+                  <div className="criteria inline-criteria">
+                    <small>EXIT CRITERIA</small>
+                    {phase.criteria.map((c) => <div key={c}>✓ {c}</div>)}
                   </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="protocol-section" id="mobility">
+            <div className="section-heading">
+              <span>05</span>
+              <div><small>RESTORE RANGE</small><h3>מוביליטי וגמישות לכתף</h3></div>
+            </div>
+
+            <div className="exercise-section-intro">
+              <h4>מוביליטי הוא כלי להשגת טווח נדרש</h4>
+              <p>
+                אין צורך למתוח כל מבנה בכתף. עובדים על טווחים או אזורים שמגבילים
+                בפועל את התנועה הרלוונטית.
+              </p>
+            </div>
+
+            <div className="protocol-exercise-grid mobility-cards">
+              {mobilityExercises.map((exercise, i) => (
+                <article className="protocol-exercise-card" key={exercise.name}>
+                  <div className="protocol-exercise-top">
+                    <span>{String(i + 1).padStart(2,'0')}</span>
+                    <small>{exercise.target}</small>
+                  </div>
+                  <h4>{exercise.name}</h4>
+                  <p>{exercise.why}</p>
+                  <div className="protocol-exercise-meta">
+                    <div><small>מינון</small><strong>{exercise.dose}</strong></div>
+                    <div><small>תדירות</small><strong>{exercise.frequency}</strong></div>
+                  </div>
+                  <a href={exercise.video} target="_blank" rel="noreferrer">צפה בסרטון YouTube ↗</a>
                 </article>
               ))}
             </div>
@@ -316,7 +401,7 @@ export default function ProtocolShell() {
 
             <article className="panel">
               <div className="panel-kicker">24-HOUR RULE</div>
-              <h3>המינון הבא נקבע מחר</h3>
+              <h3>המינון הבא נקבע גם לפי מחר</h3>
               <p>
                 אם הכאב גבוה ביותר מ־2 נקודות מה־baseline, הטווח ירד או הפעילות
                 היומיומית קשה יותר — העומס הקודם היה גבוה מדי.
@@ -325,27 +410,14 @@ export default function ProtocolShell() {
             </article>
           </section>
 
-          <section className="protocol-section" id="discharge">
-            <div className="section-heading">
-              <span>06</span>
-              <div><small>ENDPOINT</small><h3>Discharge Criteria</h3></div>
+          <div className="final-booking">
+            <div>
+              <small>ASSESS. RECOVER. PERFORM.</small>
+              <h3>לא בטוח מאיפה להתחיל?</h3>
+              <p>הערכה מסודרת מאפשרת לבחור את הטיפול והתרגילים לפי הכתף שלך.</p>
             </div>
-
-            <div className="discharge-card">
-              {[
-                'טווח תנועה מלא וסימטרי',
-                'כאב במנוחה 0/10',
-                'כאב בתנועה רגילה 0–1/10',
-                'אין כאב שמגביל שינה',
-                'אין מגבלה בפעולות שהוגדרו בתחילת התהליך',
-                'אין פער תפקודי משמעותי בכוח',
-                'עומס מלא אינו גורם להחמרה ב־24 שעות',
-                'הלקוח מנהל עומס באופן עצמאי'
-              ].map((x,i) => (
-                <div key={x}><span>{String(i+1).padStart(2,'0')}</span><p>{x}</p></div>
-              ))}
-            </div>
-          </section>
+            <a href={BOOKING_URL}>קביעת טיפול</a>
+          </div>
 
           <footer>
             <Image src="/assets/logo.png" alt="OKONSKI Performance" width={34} height={34}/>
