@@ -218,6 +218,41 @@ export default function ProtocolShell() {
                   })}
               </div>
             </div>
+
+            <section className="rotator-focus" aria-labelledby="rotator-focus-title">
+              <div className="rotator-focus-copy">
+                <span className="rotator-focus-kicker">מבט מקרוב</span>
+                <h3 id="rotator-focus-title">השרוול המסובב</h3>
+                <p>
+                  השרוול המסובב הוא קבוצה של ארבעה שרירים קטנים שמקיפים את מפרק הכתף.
+                  יחד הם שומרים את ראש עצם הזרוע יציב בתוך המפרק ועוזרים לשלוט בתנועות
+                  הרמה וסיבוב.
+                </p>
+
+                <div className="rotator-muscle-list">
+                  {anatomyMap
+                    .filter((item) => ['4.1','4.2','4.3','4.4'].includes(String(item.number)))
+                    .map((item) => (
+                      <div key={item.number}>
+                        <strong>{item.name}</strong>
+                        <span>{item.hebrew}</span>
+                        <p>{item.description}</p>
+                      </div>
+                    ))}
+                </div>
+              </div>
+
+              <div className="rotator-focus-image">
+                <Image
+                  src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Shoulder_joint.svg"
+                  alt="איור אנטומי של שרירי השרוול המסובב"
+                  fill
+                  unoptimized
+                  sizes="(max-width: 900px) 100vw, 42vw"
+                />
+                <small>איור אנטומי: NIAMS / Wikimedia Commons</small>
+              </div>
+            </section>
           </section>
 
           <section className="protocol-section" id="treatment">
