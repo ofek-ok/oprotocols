@@ -955,3 +955,35 @@ button{color:inherit}
     font-size:14px;
   }
 }
+
+
+/* Real anatomy reference images */
+.anatomy-reference{
+  position:absolute;
+  inset:0;
+  background:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px 28px 42px;
+}
+.anatomy-reference img{
+  object-fit:contain;
+}
+.anatomy-credit{
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:10px;
+  text-align:center;
+  font-size:9px;
+  color:#7c8995;
+}
+@media(max-width:620px){
+  .anatomy-reference{
+    padding:16px 10px 36px;
+  }
+  .anatomy-credit{
+    font-size:8px;
+  }
+}
