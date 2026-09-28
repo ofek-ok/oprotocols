@@ -225,46 +225,32 @@ export default function ProtocolShell() {
                 )}
 
                 {anatomyView === 'cuff' && (
-                  <div className="anatomy-schematic">
-                    <div className="schematic-caption">איור סכמטי — מבט אחורי ומבט קדמי</div>
-                    <svg viewBox="0 0 760 520" role="img" aria-label="איור סכמטי של שרירי השרוול המסובב">
-                      <g transform="translate(30 40)">
-                        <text x="150" y="20" className="svg-view-title">מבט אחורי</text>
-                        <path d="M95 95 C125 48 220 45 264 92 C294 123 289 216 248 276 C218 319 144 320 105 277 C65 232 59 148 95 95Z" className="bone"/>
-                        <path d="M258 125 C322 124 337 178 324 260 C316 311 296 357 282 411" className="humerus-line"/>
-                        <path d="M112 88 C145 62 221 63 249 97 L227 123 C190 105 151 106 121 126Z" className="muscle muscle-a"/>
-                        <path d="M110 133 C148 113 207 117 240 143 L224 229 C190 243 151 239 118 211Z" className="muscle muscle-b"/>
-                        <path d="M122 219 C153 234 193 239 222 229 L210 271 C177 280 145 271 121 252Z" className="muscle muscle-c"/>
-                        <circle cx="178" cy="91" r="16" className="marker-dot"/><text x="178" y="96" textAnchor="middle" className="marker-text">4.1</text>
-                        <circle cx="175" cy="170" r="16" className="marker-dot"/><text x="175" y="175" textAnchor="middle" className="marker-text">4.2</text>
-                        <circle cx="174" cy="238" r="16" className="marker-dot"/><text x="174" y="243" textAnchor="middle" className="marker-text">4.3</text>
-                      </g>
-
-                      <g transform="translate(390 40)">
-                        <text x="150" y="20" className="svg-view-title">מבט קדמי</text>
-                        <path d="M96 95 C128 48 221 45 264 92 C296 124 289 216 248 276 C217 319 144 320 105 277 C66 233 60 149 96 95Z" className="bone"/>
-                        <path d="M258 125 C322 124 338 178 324 260 C316 311 297 357 282 411" className="humerus-line"/>
-                        <path d="M108 118 C145 88 214 89 247 121 C257 159 251 213 227 251 C191 262 148 251 117 225 C102 191 99 151 108 118Z" className="muscle muscle-d"/>
-                        <circle cx="176" cy="177" r="16" className="marker-dot"/><text x="176" y="182" textAnchor="middle" className="marker-text">4.4</text>
-                      </g>
-                    </svg>
+                  <div className="anatomy-reference">
+                    <Image
+                      src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Shoulder_joint.svg"
+                      alt="איור אנטומי של מפרק הכתף ושרירי ה־Rotator Cuff"
+                      fill
+                      unoptimized
+                      sizes="(max-width: 900px) 100vw, 50vw"
+                    />
+                    <div className="anatomy-credit">
+                      מקור: NIAMS / Wikimedia Commons · Public Domain
+                    </div>
                   </div>
                 )}
 
                 {anatomyView === 'soft' && (
-                  <div className="anatomy-schematic">
-                    <div className="schematic-caption">איור סכמטי — מבט קדמי</div>
-                    <svg viewBox="0 0 760 520" role="img" aria-label="איור סכמטי של גיד הבייספס ורצועות הכתף">
-                      <g transform="translate(145 38)">
-                        <path d="M155 68 C205 45 293 60 324 118 C353 173 334 256 294 309 C257 357 192 367 146 333 C98 298 79 217 96 152 C106 113 126 83 155 68Z" className="bone"/>
-                        <path d="M319 133 C383 132 410 183 399 270 C392 329 369 388 352 438" className="humerus-line"/>
-                        <path d="M303 111 C330 131 339 160 337 191" className="ligament-line"/>
-                        <path d="M276 128 C309 153 315 190 307 227" className="ligament-line"/>
-                        <path d="M344 145 C343 196 337 254 332 319" className="tendon-line"/>
-                        <circle cx="336" cy="232" r="17" className="marker-dot"/><text x="336" y="237" textAnchor="middle" className="marker-text">6</text>
-                        <circle cx="305" cy="163" r="17" className="marker-dot"/><text x="305" y="168" textAnchor="middle" className="marker-text">7</text>
-                      </g>
-                    </svg>
+                  <div className="anatomy-reference">
+                    <Image
+                      src="https://upload.wikimedia.org/wikipedia/commons/c/c2/202107_Ligament_of_the_shoulder_joint.svg"
+                      alt="איור אנטומי של רצועות מפרק הכתף"
+                      fill
+                      unoptimized
+                      sizes="(max-width: 900px) 100vw, 50vw"
+                    />
+                    <div className="anatomy-credit">
+                      מקור: DBCLS / Wikimedia Commons · CC BY 4.0
+                    </div>
                   </div>
                 )}
               </div>
