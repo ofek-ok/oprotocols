@@ -1059,3 +1059,22 @@ button{color:inherit}
     left:10px;
   }
 }
+
+
+/* Simplified anatomy section */
+.simple-anatomy .anatomy-key{
+  max-height:none;
+}
+.anatomy-cuff-muscle{
+  background:#fbfcfd;
+  padding-right:28px !important;
+  border-right:3px solid #e1e8ee;
+}
+.anatomy-cuff-muscle .anatomy-name-line h3{
+  font-size:14px;
+}
+@media(max-width:620px){
+  .anatomy-cuff-muscle{
+    padding-right:18px !important;
+  }
+}
