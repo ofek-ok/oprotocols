@@ -1,6 +1,7 @@
 export const anatomyMap = [
   {
     number: '1',
+    label: 'עצם הבריח',
     name: 'Clavicle',
     hebrew: 'עצם הבריח',
     type: 'עצם',
@@ -9,6 +10,7 @@ export const anatomyMap = [
   },
   {
     number: '2',
+    label: 'אקרומיון',
     name: 'Acromion',
     hebrew: 'אקרומיון',
     type: 'עצם',
@@ -17,6 +19,7 @@ export const anatomyMap = [
   },
   {
     number: '3',
+    label: 'עצם הזרוע',
     name: 'Humerus',
     hebrew: 'עצם הזרוע',
     type: 'עצם',
@@ -25,6 +28,7 @@ export const anatomyMap = [
   },
   {
     number: '4',
+    label: 'Rotator Cuff',
     name: 'Rotator Cuff',
     hebrew: 'השרוול המסובב',
     type: 'קבוצת שרירים',
@@ -33,6 +37,7 @@ export const anatomyMap = [
   },
   {
     number: '4.1',
+    label: 'Supraspinatus',
     parent: '4',
     name: 'Supraspinatus',
     hebrew: 'סופרה־ספינטוס',
@@ -42,6 +47,7 @@ export const anatomyMap = [
   },
   {
     number: '4.2',
+    label: 'Infraspinatus',
     parent: '4',
     name: 'Infraspinatus',
     hebrew: 'אינפרה־ספינטוס',
@@ -51,6 +57,7 @@ export const anatomyMap = [
   },
   {
     number: '4.3',
+    label: 'Teres Minor',
     parent: '4',
     name: 'Teres Minor',
     hebrew: 'טרס מינור',
@@ -60,6 +67,7 @@ export const anatomyMap = [
   },
   {
     number: '4.4',
+    label: 'Subscapularis',
     parent: '4',
     name: 'Subscapularis',
     hebrew: 'סאב־סקפולריס',
@@ -69,6 +77,7 @@ export const anatomyMap = [
   },
   {
     number: '5',
+    label: 'Deltoid',
     name: 'Deltoid',
     hebrew: 'שריר הדלתואיד',
     type: 'שריר',
@@ -77,6 +86,7 @@ export const anatomyMap = [
   },
   {
     number: '6',
+    label: 'גיד הבייספס',
     name: 'Long Head of Biceps',
     hebrew: 'הגיד הארוך של הבייספס',
     type: 'גיד',
@@ -85,6 +95,7 @@ export const anatomyMap = [
   },
   {
     number: '7',
+    label: 'רצועות המפרק',
     name: 'Glenohumeral Ligaments',
     hebrew: 'רצועות המפרק',
     type: 'רצועות',
