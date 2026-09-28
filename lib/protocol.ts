@@ -82,7 +82,7 @@ export const treatmentOptions = [
     text: 'כלי פולשני שיכול לשמש במקרים נבחרים לשינוי קצר טווח בכאב או רגישות. מבוצע רק על ידי איש מקצוע שהוסמך לכך ובהתאם למסגרת המקצועית.'
   },
   {
-    title: 'הקזת דם / Wet Cupping',
+    title: 'הקזת דם (Wet Cupping)',
     level: 'NOT ROUTINE',
     text: 'אינה חלק מליבת פרוטוקול הכתף ואינה מוצגת כטיפול סטנדרטי. אם נעשה בה שימוש בכלל, הוא חייב להיות במסגרת מקצועית מתאימה ולא במקום הערכה, תרגול והעמסה.'
   }
@@ -185,8 +185,8 @@ export const mobilityExercises = [
 export const phases = [
   {
     number: '01',
-    eyebrow: 'PHASE 1',
-    title: 'Restore Motion',
+    eyebrow: 'שלב 1',
+    title: 'החזרת טווח תנועה',
     summary: 'החזרת טווח תנועה ושליטה בסיסית ללא החמרה בתסמינים.',
     criteria: ['טווח פעיל ≥ 90% מהצד השני', 'כאב בזמן ביצוע ≤ 3/10', 'אין החמרה מעבר ל־24 שעות'],
     exercises: [
@@ -199,8 +199,8 @@ export const phases = [
   },
   {
     number: '02',
-    eyebrow: 'PHASE 2',
-    title: 'Build Control',
+    eyebrow: 'שלב 2',
+    title: 'בניית שליטה',
     summary: 'בניית שליטה וכוח של השרוול המסובב, הדלתואיד ומייצבי השכמה.',
     criteria: ['טווח פעיל סימטרי', 'כאב בזמן עבודה ≤ 2/10', 'ER: ‏3 × 15 בשליטה מלאה', 'Push-Up Plus: ‏3 × 15 באיכות מלאה'],
     exercises: [
@@ -214,8 +214,8 @@ export const phases = [
   },
   {
     number: '03',
-    eyebrow: 'PHASE 3',
-    title: 'Build Capacity',
+    eyebrow: 'שלב 3',
+    title: 'בניית יכולת',
     summary: 'הגדלת יכולת הכתף להתמודד עם התנגדות, נפח וטווחים מלאים.',
     criteria: ['כאב ≤ 2/10 במהלך העבודה', 'אין ירידה בטווח למחרת', 'התקדמות של 5–10% בעומס בכל פעם'],
     exercises: [
