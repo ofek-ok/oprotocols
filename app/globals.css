@@ -1280,3 +1280,174 @@ button{color:inherit}
     min-height:280px;
   }
 }
+
+
+/* Complete shoulder anatomy */
+.anatomy-block{
+  margin-top:18px;
+  padding:22px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+}
+.anatomy-block-heading{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  margin-bottom:18px;
+}
+.anatomy-block-heading>span{
+  flex:0 0 30px;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--accent-soft);
+  color:var(--accent);
+  font-size:11px;
+  font-weight:800;
+}
+.anatomy-block-heading h3{
+  margin:0;
+  font-size:20px;
+  color:var(--ink);
+}
+.anatomy-block-heading p{
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.65;
+}
+.anatomy-overview-copy{
+  min-width:0;
+}
+.anatomy-info-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:14px;
+}
+.anatomy-overview-group{
+  background:#fbfcfd;
+  border:1px solid #e4e9ee;
+  border-radius:12px;
+  overflow:hidden;
+}
+.anatomy-overview-group h4{
+  margin:0;
+  padding:13px 14px;
+  border-bottom:1px solid #e8edf1;
+  font-size:13px;
+  color:#344656;
+}
+.anatomy-overview-group article{
+  padding:12px 14px;
+  border-bottom:1px solid #edf1f4;
+}
+.anatomy-overview-group article:last-child{
+  border-bottom:0;
+}
+.anatomy-overview-group strong{
+  display:block;
+  font-size:12px;
+  color:#263746;
+}
+.anatomy-overview-group small{
+  display:block;
+  direction:ltr;
+  text-align:right;
+  margin-top:1px;
+  color:#7a8793;
+  font-size:9px;
+}
+.anatomy-overview-group p{
+  margin:5px 0 0;
+  color:#64717f;
+  font-size:10.5px;
+  line-height:1.55;
+}
+.rotator-muscle-card-copy p{
+  margin:7px 0 0;
+  color:#64717f;
+  font-size:10.5px;
+  line-height:1.55;
+}
+.muscle-detail-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.muscle-detail-grid article{
+  padding:15px;
+  background:#fbfcfd;
+  border:1px solid #e4e9ee;
+  border-radius:11px;
+}
+.muscle-detail-title{
+  margin-bottom:8px;
+}
+.muscle-detail-title strong{
+  display:block;
+  font-size:13px;
+  color:#263746;
+}
+.muscle-detail-title small{
+  display:block;
+  direction:ltr;
+  text-align:right;
+  margin-top:2px;
+  color:#7a8793;
+  font-size:9px;
+}
+.muscle-detail-grid p{
+  margin:5px 0 0;
+  color:#63707c;
+  font-size:10.5px;
+  line-height:1.55;
+}
+.muscle-detail-grid p b{
+  color:#35495a;
+}
+.anatomy-function-block{
+  background:#f8fafc;
+}
+.shoulder-function-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.shoulder-function-grid article{
+  padding:16px;
+  background:#fff;
+  border:1px solid #e1e7ec;
+  border-radius:11px;
+}
+.shoulder-function-grid h4{
+  margin:0;
+  color:#2e4254;
+  font-size:13px;
+}
+.shoulder-function-grid p{
+  margin:7px 0 0;
+  color:#63707c;
+  font-size:10.5px;
+  line-height:1.6;
+}
+@media(max-width:900px){
+  .anatomy-info-grid{
+    grid-template-columns:1fr;
+  }
+}
+@media(max-width:700px){
+  .anatomy-block{
+    padding:16px 13px;
+  }
+  .anatomy-block-heading h3{
+    font-size:18px;
+  }
+  .muscle-detail-grid,
+  .shoulder-function-grid{
+    grid-template-columns:1fr;
+  }
+}
