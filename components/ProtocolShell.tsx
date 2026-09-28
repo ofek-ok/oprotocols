@@ -106,8 +106,8 @@ export default function ProtocolShell() {
           </button>
         ))}
         <div className="sidebar-card">
-          <span>CLINICAL PRECISION.</span>
-          <span>PEAK PERFORMANCE.</span>
+          <span>דיוק קליני.</span>
+          <span>ביצועים מיטביים.</span>
           <i />
         </div>
       </aside>
@@ -194,7 +194,7 @@ export default function ProtocolShell() {
                 שסביבה ויכולת להתמודד עם עומס חוזר.
               </p>
               <div className="outcome-flow">
-                <span>MOVE</span><i>→</i><span>CONTROL</span><i>→</i><span>LOAD</span><i>→</i><span>PERFORM</span>
+                <span>תנועה</span><i>→</i><span>שליטה</span><i>→</i><span>עומס</span><i>→</i><span>ביצוע</span>
               </div>
             </article>
 
