@@ -182,32 +182,40 @@ export default function ProtocolShell() {
                   sizes="(max-width: 900px) 100vw, 50vw"
                   priority
                 />
-                {anatomyMap.map((item) => (
-                  <span
-                    className="anatomy-marker"
-                    key={item.number}
-                    style={{ top: item.position.top, left: item.position.left }}
-                    aria-label={item.hebrew}
-                  >
-                    {item.number}
-                  </span>
-                ))}
+                {anatomyMap.map((item) => {
+                  const isRotatorChild = String(item.number).includes('.');
+                  return (
+                    <span
+                      className={isRotatorChild ? 'anatomy-marker anatomy-marker-sub' : 'anatomy-marker'}
+                      key={item.number}
+                      style={{ top: item.position.top, left: item.position.left }}
+                      aria-label={item.hebrew}
+                    >
+                      {item.number}
+                    </span>
+                  );
+                })}
               </div>
 
               <div className="anatomy-key">
-                {anatomyMap.map((item) => (
-                  <article key={item.number}>
-                    <span className="anatomy-number">{item.number}</span>
-                    <div>
-                      <div className="anatomy-name-line">
-                        <h3>{item.hebrew}</h3>
-                        <small>{item.name}</small>
+                {anatomyMap.map((item) => {
+                  const isRotatorChild = String(item.number).includes('.');
+                  return (
+                    <article key={item.number} className={isRotatorChild ? 'anatomy-subitem' : undefined}>
+                      <span className={isRotatorChild ? 'anatomy-number anatomy-number-sub' : 'anatomy-number'}>
+                        {item.number}
+                      </span>
+                      <div>
+                        <div className="anatomy-name-line">
+                          <h3>{item.hebrew}</h3>
+                          <small>{item.name}</small>
+                        </div>
+                        <div className="anatomy-type">{item.type}</div>
+                        <p>{item.description}</p>
                       </div>
-                      <div className="anatomy-type">{item.type}</div>
-                      <p>{item.description}</p>
-                    </div>
-                  </article>
-                ))}
+                    </article>
+                  );
+                })}
               </div>
             </div>
           </section>
