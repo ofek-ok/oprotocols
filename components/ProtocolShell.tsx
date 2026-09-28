@@ -213,12 +213,11 @@ export default function ProtocolShell() {
                       .filter((item) => ['1','2','3','5'].includes(String(item.number)))
                       .map((item) => (
                         <span
-                          className="anatomy-marker"
+                          className="anatomy-label-marker"
                           key={item.number}
                           style={{ top: item.position.top, left: item.position.left }}
-                          aria-label={item.hebrew}
                         >
-                          {item.number}
+                          {item.label}
                         </span>
                       ))}
                   </>
@@ -226,6 +225,10 @@ export default function ProtocolShell() {
 
                 {anatomyView === 'cuff' && (
                   <div className="anatomy-reference">
+                    <div className="anatomy-image-heading">
+                      <strong>Rotator Cuff</strong>
+                      <span>ארבעה שרירים שעוטפים ומייצבים את מפרק הכתף</span>
+                    </div>
                     <Image
                       src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Shoulder_joint.svg"
                       alt="איור אנטומי של מפרק הכתף ושרירי ה־Rotator Cuff"
@@ -241,6 +244,10 @@ export default function ProtocolShell() {
 
                 {anatomyView === 'soft' && (
                   <div className="anatomy-reference">
+                    <div className="anatomy-image-heading">
+                      <strong>רצועות וגידים</strong>
+                      <span>מבנים שתורמים ליציבות ולהעברת כוח סביב המפרק</span>
+                    </div>
                     <Image
                       src="https://upload.wikimedia.org/wikipedia/commons/c/c2/202107_Ligament_of_the_shoulder_joint.svg"
                       alt="איור אנטומי של רצועות מפרק הכתף"
@@ -256,31 +263,35 @@ export default function ProtocolShell() {
               </div>
 
               <div className="anatomy-key">
+                {anatomyView === 'cuff' && (
+                  <div className="anatomy-group-intro">
+                    <strong>Rotator Cuff</strong>
+                    <p>
+                      זו לא ישות אחת אלא קבוצה של ארבעה שרירים. כל אחד מהם פועל בכיוון מעט שונה,
+                      ויחד הם שומרים את ראש עצם הזרוע יציב בתוך המפרק בזמן תנועה ועומס.
+                    </p>
+                  </div>
+                )}
+
                 {anatomyMap
                   .filter((item) => {
                     const n = String(item.number);
                     if (anatomyView === 'general') return ['1','2','3','5'].includes(n);
-                    if (anatomyView === 'cuff') return n === '4' || n.startsWith('4.');
+                    if (anatomyView === 'cuff') return n.startsWith('4.');
                     return ['6','7'].includes(n);
                   })
-                  .map((item) => {
-                    const isRotatorChild = String(item.number).includes('.');
-                    return (
-                      <article key={item.number} className={isRotatorChild ? 'anatomy-subitem' : undefined}>
-                        <span className={isRotatorChild ? 'anatomy-number anatomy-number-sub' : 'anatomy-number'}>
-                          {item.number}
-                        </span>
-                        <div>
-                          <div className="anatomy-name-line">
-                            <h3>{item.hebrew}</h3>
-                            <small>{item.name}</small>
-                          </div>
-                          <div className="anatomy-type">{item.type}</div>
-                          <p>{item.description}</p>
+                  .map((item) => (
+                    <article key={item.number} className="anatomy-readable-item">
+                      <div>
+                        <div className="anatomy-name-line">
+                          <h3>{item.hebrew}</h3>
+                          <small>{item.name}</small>
                         </div>
-                      </article>
-                    );
-                  })}
+                        <div className="anatomy-type">{item.type}</div>
+                        <p>{item.description}</p>
+                      </div>
+                    </article>
+                  ))}
               </div>
             </div>
           </section>
