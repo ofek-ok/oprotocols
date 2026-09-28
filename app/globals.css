@@ -781,3 +781,39 @@ button{color:inherit}
   font-size:10px;
   font-weight:700;
 }
+
+
+/* Centered hero refinement */
+.hero-copy-simple{
+  max-width:760px;
+  margin:0 auto;
+  text-align:center;
+}
+.hero-copy-simple h1{
+  text-align:center;
+}
+.hero-copy-simple .hero-lead{
+  margin:12px auto 0;
+  text-align:center;
+}
+.hero-actions{
+  justify-content:center;
+}
+.hero-guide{
+  text-align:center;
+}
+.hero-guide h2{
+  text-align:center;
+}
+.hero-guide-links{
+  justify-content:center;
+}
+@media(max-width:620px){
+  .hero-copy-simple{
+    text-align:center;
+  }
+  .hero-copy-simple h1,
+  .hero-copy-simple .hero-lead{
+    text-align:center;
+  }
+}
