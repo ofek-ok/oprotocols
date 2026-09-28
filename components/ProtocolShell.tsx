@@ -219,42 +219,64 @@ export default function ProtocolShell() {
               </div>
             </div>
 
-            <section className="rotator-focus" aria-labelledby="rotator-focus-title">
+            <section className="rotator-focus rotator-focus-simple" aria-labelledby="rotator-focus-title">
               <div className="rotator-focus-copy">
                 <span className="rotator-focus-kicker">מבט מקרוב</span>
                 <h3 id="rotator-focus-title">השרוול המסובב</h3>
                 <p>
-                  השרוול המסובב הוא קבוצה של ארבעה שרירים קטנים שמקיפים את מפרק הכתף.
-                  יחד הם שומרים את ראש עצם הזרוע יציב בתוך המפרק ועוזרים לשלוט בתנועות
-                  הרמה וסיבוב.
+                  השרוול המסובב מורכב מארבעה שרירים. כדי שיהיה ברור איפה כל אחד נמצא,
+                  כל שריר מוצג כאן בנפרד ומודגש באדום.
                 </p>
-
-                <div className="rotator-muscle-list">
-                  {anatomyMap
-                    .filter((item) => ['4.1','4.2','4.3','4.4'].includes(String(item.number)))
-                    .map((item) => (
-                      <div key={item.number}>
-                        <strong>{item.name}</strong>
-                        <span>{item.hebrew}</span>
-                        <p>{item.description}</p>
-                      </div>
-                    ))}
-                </div>
               </div>
 
-              <div className="rotator-focus-image">
-                <Image
-                  src="https://upload.wikimedia.org/wikipedia/commons/6/68/Rotator_cuff_muscles.svg"
-                  alt="איור אנטומי קדמי ואחורי של מפרק הכתף והשרוול המסובב"
-                  fill
-                  unoptimized
-                  sizes="(max-width: 900px) 100vw, 42vw"
-                />
-                <div className="rotator-image-legend">
-                  <span><b>מבט אחורי:</b> Supraspinatus · Infraspinatus · Teres Minor</span>
-                  <span><b>מבט קדמי:</b> Subscapularis</span>
-                </div>
-                <small>איור: InjuryMap / Wikimedia Commons · CC BY-SA 4.0</small>
+              <div className="rotator-muscle-grid">
+                {[
+                  {
+                    name: 'Supraspinatus',
+                    hebrew: 'סופרה־ספינטוס',
+                    view: 'מבט מאחור',
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Supraspinatus_muscle_back.png'
+                  },
+                  {
+                    name: 'Infraspinatus',
+                    hebrew: 'אינפרה־ספינטוס',
+                    view: 'מבט מאחור',
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/Infraspinatus_muscle_back.png'
+                  },
+                  {
+                    name: 'Teres Minor',
+                    hebrew: 'טרס מינור',
+                    view: 'מבט מאחור',
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/7/75/Teres_minor_muscle_back.png'
+                  },
+                  {
+                    name: 'Subscapularis',
+                    hebrew: 'סאב־סקפולריס',
+                    view: 'מבט מלפנים',
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Subscapularis_muscle_frontal2.png'
+                  }
+                ].map((muscle) => (
+                  <article className="rotator-muscle-card" key={muscle.name}>
+                    <div className="rotator-muscle-visual">
+                      <Image
+                        src={muscle.src}
+                        alt={`${muscle.name} מודגש באדום`}
+                        fill
+                        unoptimized
+                        sizes="(max-width: 620px) 100vw, (max-width: 1000px) 50vw, 25vw"
+                      />
+                    </div>
+                    <div className="rotator-muscle-card-copy">
+                      <small>{muscle.view}</small>
+                      <strong>{muscle.name}</strong>
+                      <span>{muscle.hebrew}</span>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="rotator-source">
+                השריר המודגש באדום · BodyParts3D / Anatomography · Wikimedia Commons
               </div>
             </section>
           </section>
