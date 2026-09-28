@@ -987,3 +987,75 @@ button{color:inherit}
     font-size:8px;
   }
 }
+
+
+/* Client-friendly anatomy readability */
+.anatomy-label-marker{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  background:rgba(255,255,255,.94);
+  color:#294b6b;
+  border:1px solid #b8cad9;
+  border-radius:999px;
+  padding:6px 9px;
+  font-size:10px;
+  font-weight:700;
+  white-space:nowrap;
+  box-shadow:0 3px 10px rgba(18,35,50,.12);
+}
+.anatomy-image-heading{
+  position:absolute;
+  top:16px;
+  right:18px;
+  left:18px;
+  z-index:3;
+  background:rgba(255,255,255,.94);
+  border:1px solid #dde5eb;
+  border-radius:10px;
+  padding:10px 12px;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+.anatomy-image-heading strong{
+  font-size:13px;
+  color:#263746;
+}
+.anatomy-image-heading span{
+  font-size:10px;
+  color:#6a7885;
+}
+.anatomy-group-intro{
+  padding:18px;
+  background:#f7f9fb;
+  border-bottom:1px solid #e3e8ed;
+}
+.anatomy-group-intro strong{
+  display:block;
+  font-size:15px;
+  margin-bottom:6px;
+}
+.anatomy-group-intro p{
+  margin:0;
+  font-size:12px;
+  line-height:1.65;
+  color:#64717f;
+}
+.anatomy-readable-item{
+  display:block !important;
+  padding:16px 18px !important;
+}
+.anatomy-readable-item .anatomy-name-line{
+  margin-bottom:2px;
+}
+@media(max-width:620px){
+  .anatomy-label-marker{
+    font-size:9px;
+    padding:5px 7px;
+  }
+  .anatomy-image-heading{
+    top:10px;
+    right:10px;
+    left:10px;
+  }
+}
