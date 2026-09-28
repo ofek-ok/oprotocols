@@ -1,90 +1,106 @@
-export const anatomyGroups = [
+export const anatomyMap = [
   {
-    title: 'עצמות ומבנה גרמי',
-    items: [
-      ['Humerus', 'עצם הזרוע. ראש ההומרוס יוצר את המשטח הכדורי של מפרק הכתף.'],
-      ['Scapula', 'השכמה מספקת את בסיס התנועה והיציבות של חגורת הכתפיים.'],
-      ['Clavicle', 'עצם הבריח מחברת את חגורת הכתפיים לבית החזה ומעבירה עומס מהזרוע לגו.'],
-      ['Acromion', 'שלוחה של השכמה היוצרת את הגג הגרמי מעל ראש הזרוע.'],
-      ['Coracoid Process', 'נקודת אחיזה משמעותית לשרירים ורצועות בחלק הקדמי של הכתף.']
-    ]
+    number: 1,
+    name: 'Clavicle',
+    hebrew: 'עצם הבריח',
+    type: 'עצם',
+    description: 'מחברת בין בית החזה לחגורת הכתפיים ומעבירה עומס מהזרוע אל מרכז הגוף.',
+    position: { top: '18%', left: '47%' }
   },
   {
-    title: 'מפרקים, קפסולה ולברום',
-    items: [
-      ['Glenohumeral Joint', 'המפרק העיקרי של הכתף. מאפשר טווח גדול מאוד ודורש שליטה שרירית גבוהה.'],
-      ['AC Joint', 'המפרק בין האקרומיון לעצם הבריח. משתתף בתנועת השכמה ובהעברת עומס.'],
-      ['SC Joint', 'החיבור הגרמי היחיד של חגורת הכתפיים לשלד הצירי.'],
-      ['Labrum', 'טבעת סחוסית שמעמיקה את המכתש ותורמת ליציבות המפרק.'],
-      ['Joint Capsule', 'מעטפת המפרק. מאפשרת תנועה אך גם מספקת יציבות פסיבית.']
-    ]
+    number: 2,
+    name: 'Acromion',
+    hebrew: 'אקרומיון',
+    type: 'עצם',
+    description: 'שלוחה של השכמה שיוצרת את החלק העליון של הכתף ומתחברת לעצם הבריח.',
+    position: { top: '28%', left: '57%' }
   },
   {
-    title: 'Rotator Cuff',
-    items: [
-      ['Supraspinatus', 'מסייע בהרמת הזרוע ודוחס את ראש ההומרוס למפרק במהלך העמסה.'],
-      ['Infraspinatus', 'אחראי בעיקר על External Rotation ותורם לשליטה אחורית בראש הזרוע.'],
-      ['Teres Minor', 'מסייע ב־External Rotation ובשליטה בזמן תנועות משיכה והרמה.'],
-      ['Subscapularis', 'Rotator Cuff קדמי. אחראי בעיקר על Internal Rotation ויציבות קדמית.']
-    ]
+    number: 3,
+    name: 'Humerus',
+    hebrew: 'עצם הזרוע',
+    type: 'עצם',
+    description: 'ראש עצם הזרוע יוצר עם השכמה את מפרק הכתף המרכזי.',
+    position: { top: '65%', left: '57%' }
   },
   {
-    title: 'שרירים ומייצבים מרכזיים',
-    items: [
-      ['Deltoid', 'המנוע המרכזי בהרמת הזרוע. עובד יחד עם ה־Rotator Cuff כדי לשמור על מסלול תנועה יעיל.'],
-      ['Serratus Anterior', 'מסובב ומצמיד את השכמה לבית החזה, חשוב במיוחד בהרמה מעל הראש.'],
-      ['Trapezius', 'Upper, Middle ו־Lower Trapezius תורמים לסיבוב, הרמה ושליטה של השכמה.'],
-      ['Rhomboids', 'תורמים לשליטה במיקום השכמה ולתנועות משיכה.'],
-      ['Pectoralis Major / Minor', 'משתתפים בתנועות דחיפה, קירוב וסיבוב פנימי ויכולים להשפיע על מנח חגורת הכתפיים.'],
-      ['Latissimus Dorsi', 'שריר משיכה גדול המשפיע על Extension, Adduction ו־Internal Rotation.'],
-      ['Long Head of Biceps', 'גיד העובר בחלק הקדמי של הכתף ותורם לתפקוד הכתף והמרפק.']
-    ]
+    number: 4,
+    name: 'Deltoid',
+    hebrew: 'שריר הדלתואיד',
+    type: 'שריר',
+    description: 'השריר הגדול שעוטף את הכתף. אחראי בעיקר על הרמת הזרוע ופועל יחד עם ה־Rotator Cuff.',
+    position: { top: '42%', left: '70%' }
   },
   {
-    title: 'רצועות ויציבות פסיבית',
-    items: [
-      ['Glenohumeral Ligaments', 'מערכת רצועות המסייעת להגביל תנועה עודפת בקצוות הטווח.'],
-      ['Coracohumeral Ligament', 'תורמת ליציבות בחלק העליון של המפרק.'],
-      ['Coracoacromial Arch', 'מבנה המורכב מהאקרומיון, הקורקואיד והרצועה ביניהם ויוצר את החלל העליון של הכתף.']
-    ]
+    number: 5,
+    name: 'Supraspinatus',
+    hebrew: 'סופרה־ספינטוס',
+    type: 'שריר',
+    description: 'אחד מארבעת שרירי ה־Rotator Cuff. מסייע בתחילת הרמת הזרוע ובייצוב ראש הזרוע.',
+    position: { top: '31%', left: '48%' }
+  },
+  {
+    number: 6,
+    name: 'Infraspinatus / Teres Minor',
+    hebrew: 'אינפרה־ספינטוס וטרס מינור',
+    type: 'שרירים',
+    description: 'מבצעים בעיקר External Rotation ותורמים ליציבות ולשליטה בחלק האחורי של הכתף.',
+    position: { top: '46%', left: '43%' }
+  },
+  {
+    number: 7,
+    name: 'Subscapularis',
+    hebrew: 'סאב־סקפולריס',
+    type: 'שריר',
+    description: 'החלק הקדמי של ה־Rotator Cuff. מבצע בעיקר Internal Rotation ותורם ליציבות קדמית.',
+    position: { top: '45%', left: '53%' }
+  },
+  {
+    number: 8,
+    name: 'Long Head of Biceps',
+    hebrew: 'הגיד הארוך של הבייספס',
+    type: 'גיד',
+    description: 'עובר בחלק הקדמי של הכתף ומשתתף בתפקוד הכתף והמרפק.',
+    position: { top: '53%', left: '61%' }
+  },
+  {
+    number: 9,
+    name: 'Glenohumeral Ligaments',
+    hebrew: 'רצועות המפרק',
+    type: 'רצועות',
+    description: 'מסייעות לייצב את ראש הזרוע ולרסן תנועה עודפת בקצוות הטווח.',
+    position: { top: '38%', left: '56%' }
   }
 ] as const;
 
 export const treatmentOptions = [
   {
-    title: 'הערכה קלינית ותכנון עומס',
-    level: 'CORE',
-    text: 'הבסיס לכל טיפול. בודקים טווח, כוח, תנועות שמייצרות סימפטומים, תגובת עומס והמטרות התפקודיות של הלקוח. מכאן מחליטים מה צריך להפחית, לשמר ולבנות.'
+    title: 'הערכה ותכנון עומס',
+    text: 'השלב הראשון הוא להבין מה מגביל את הכתף כרגע: כאב, טווח תנועה, כוח, שליטה או סבילות לעומס. ההערכה קובעת אילו כלים מתאימים ובאיזה סדר.'
   },
   {
-    title: 'עיסוי וטיפול ידני',
-    level: 'ADJUNCT',
-    text: 'יכול לשמש להפחתת רגישות, שיפור תחושת תנועה והכנה לעבודה אקטיבית. הוא כלי עזר ולא תחליף לחיזוק והעמסה.'
+    title: 'טיפול ידני ועיסוי',
+    text: 'יכול לעזור להפחית רגישות ונוקשות ולשפר זמנית את תחושת התנועה. בדרך כלל משתמשים בו כדי לאפשר מעבר טוב יותר לתנועה ולתרגול אקטיבי.'
   },
   {
     title: 'מוביליזציות ומתיחות',
-    level: 'CORE / ADJUNCT',
-    text: 'משתמשים כאשר קיימת מגבלת טווח רלוונטית. המטרה היא לשפר את התנועה הדרושה לתפקוד, לא ליצור "גמישות" כללית ללא יעד.'
-  },
-  {
-    title: 'חיזוק והעמסה מדורגת',
-    level: 'CORE',
-    text: 'המרכיב המרכזי לטווח הארוך. בונים כוח של Rotator Cuff, Deltoid ומייצבי השכמה ומתקדמים לנפח, טווח ומהירות בהתאם ליכולת.'
+    text: 'מתאימות כאשר קיימת מגבלת טווח רלוונטית. המטרה היא לשפר תנועה שנדרשת בפועל ולא לייצר גמישות כללית ללא צורך.'
   },
   {
     title: 'כוסות רוח',
-    level: 'ADJUNCT',
-    text: 'יכולות לשמש אצל חלק מהמטופלים ככלי זמני לשינוי תחושת כאב או נוקשות. אינן מחליפות תנועה, כוח והעמסה.'
+    text: 'יכולות לשמש ככלי משלים אצל חלק מהמטופלים לצורך שינוי זמני בתחושת כאב או נוקשות. הן אינן מחליפות חיזוק והעמסה.'
   },
   {
     title: 'דיקור יבש',
-    level: 'CLINICIAN ONLY',
-    text: 'כלי פולשני שיכול לשמש במקרים נבחרים לשינוי קצר טווח בכאב או רגישות. מבוצע רק על ידי איש מקצוע שהוסמך לכך ובהתאם למסגרת המקצועית.'
+    text: 'כלי טיפולי פולשני שיכול לשמש במקרים נבחרים להפחתת כאב או רגישות מקומית. הוא מתאים רק לביצוע על ידי איש מקצוע שהוסמך לכך.'
   },
   {
-    title: 'הקזת דם (Wet Cupping)',
-    level: 'NOT ROUTINE',
-    text: 'אינה חלק מליבת פרוטוקול הכתף ואינה מוצגת כטיפול סטנדרטי. אם נעשה בה שימוש בכלל, הוא חייב להיות במסגרת מקצועית מתאימה ולא במקום הערכה, תרגול והעמסה.'
+    title: 'הקזת דם / Wet Cupping',
+    text: 'אינה חלק שגרתי מפרוטוקול שיקום כתף. אם משתמשים בה, היא צריכה להיעשות במסגרת מקצועית מתאימה ולא במקום הערכה, תנועה וחיזוק.'
+  },
+  {
+    title: 'חיזוק והעמסה מדורגת',
+    text: 'זהו המרכיב המרכזי בבניית כתף חזקה לאורך זמן. מתקדמים מכוח בסיסי לשליטה, טווח, נפח ומהירות לפי היכולת והתגובה לעומס.'
   }
 ] as const;
 
@@ -93,153 +109,116 @@ export const strengthExercises = [
     name: 'External Rotation Isometric',
     target: 'Rotator Cuff',
     dose: '4 × 30 שניות',
-    frequency: '3× בשבוע',
-    why: 'בניית יכולת הפקת כוח בסיבוב חיצוני ללא צורך בטווח גדול.',
-    video: 'https://www.youtube.com/watch?v=cVheIBttq1o'
+    frequency: '3 פעמים בשבוע',
+    why: 'עבודה על כוח בסיבוב חיצוני בלי צורך בטווח תנועה גדול.',
+    execution: 'מרפק צמוד לגוף, כתף נינוחה. לוחצים החוצה מול התנגדות קבועה בלי להזיז את הזרוע.',
+    video: 'https://www.youtube.com/results?search_query=external+rotation+isometric+shoulder+exercise'
   },
   {
     name: 'Band External Rotation',
     target: 'Infraspinatus / Teres Minor',
     dose: '3 × 12–15',
-    frequency: '3× בשבוע',
-    why: 'חיזוק דינמי של External Rotation ושליטה בראש הזרוע.',
-    video: 'https://www.youtube.com/results?search_query=E3+Rehab+band+shoulder+external+rotation'
+    frequency: '3 פעמים בשבוע',
+    why: 'חיזוק דינמי של הסיבוב החיצוני ושליטת ה־Rotator Cuff.',
+    execution: 'המרפק נשאר קרוב לגוף. מסובבים את האמה החוצה בלי לפצות עם הגב או השכמה.',
+    video: 'https://www.youtube.com/results?search_query=band+shoulder+external+rotation+exercise'
   },
   {
     name: 'Scaption',
     target: 'Deltoid + Rotator Cuff',
     dose: '3 × 10–12',
-    frequency: '3× בשבוע',
-    why: 'חיזוק הרמת הזרוע במישור נוח ופונקציונלי לכתף.',
-    video: 'https://www.youtube.com/results?search_query=physiotherapy+scaption+exercise'
+    frequency: '3 פעמים בשבוע',
+    why: 'חיזוק הרמת הזרוע במישור שמתאים לעבודה טבעית של הכתף והשכמה.',
+    execution: 'מרימים את הזרוע מעט קדימה מקו הגוף, בשליטה, בלי להרים את הכתף לכיוון האוזן.',
+    video: 'https://www.youtube.com/results?search_query=scaption+exercise+shoulder'
   },
   {
     name: 'Push-Up Plus',
     target: 'Serratus Anterior',
     dose: '3 × 10–15',
-    frequency: '3× בשבוע',
-    why: 'שיפור שליטת השכמה ויכולת protraction תחת עומס.',
-    video: 'https://www.youtube.com/watch?v=RFbjeyq_ZPc'
+    frequency: '3 פעמים בשבוע',
+    why: 'שיפור שליטת השכמה ויכולת לדחוף אותה קדימה תחת עומס.',
+    execution: 'מבצעים שכיבת סמיכה או גרסה על קיר, ובסיום ממשיכים לדחוף את בית החזה מהמשטח בלי לכופף מרפקים.',
+    video: 'https://www.youtube.com/results?search_query=push+up+plus+serratus+exercise'
   },
   {
     name: 'Serratus Wall Slide',
-    target: 'Serratus + Lower Trapezius',
+    target: 'Serratus Anterior',
     dose: '3 × 10',
-    frequency: '3× בשבוע',
-    why: 'בניית upward rotation ושליטה בהרמה מעל הראש.',
-    video: 'https://www.youtube.com/results?search_query=serratus+wall+slide+physical+therapy'
+    frequency: '3 פעמים בשבוע',
+    why: 'תרגול של upward rotation ושליטה בשכמה בזמן הרמת הידיים.',
+    execution: 'האמות על הקיר. מחליקים כלפי מעלה תוך שמירה על לחץ קל לקיר וללא קשת מוגזמת בגב.',
+    video: 'https://www.youtube.com/results?search_query=serratus+wall+slide+exercise'
   },
   {
     name: 'Single Arm Row',
     target: 'Scapular Retractors',
     dose: '3 × 8–12',
-    frequency: '3× בשבוע',
-    why: 'בניית כוח משיכה ושליטה בשכמה תחת עומס.',
-    video: 'https://www.youtube.com/results?search_query=single+arm+row+physical+therapy+shoulder'
+    frequency: '3 פעמים בשבוע',
+    why: 'בניית כוח משיכה ושליטה בחגורת הכתפיים תחת עומס.',
+    execution: 'מושכים את המרפק לאחור תוך שמירה על בית חזה יציב ותנועה חלקה של השכמה.',
+    video: 'https://www.youtube.com/results?search_query=single+arm+row+shoulder+rehab'
   }
 ] as const;
 
 export const mobilityExercises = [
   {
     name: 'Assisted Shoulder Flexion',
-    target: 'Flexion ROM',
+    target: 'Flexion',
     dose: '2 × 12',
     frequency: 'פעם ביום',
-    why: 'החזרת טווח הרמה בצורה מסייעת ומבוקרת.',
-    video: 'https://www.youtube.com/watch?v=WABqE7oPM1g'
+    why: 'החזרת טווח הרמה בעזרת תמיכה של היד השנייה או מקל.',
+    execution: 'עולים לטווח נוח ומבוקר בלי לדחוף דרך כאב חד או פיצוי משמעותי.',
+    video: 'https://www.youtube.com/results?search_query=assisted+shoulder+flexion+exercise'
   },
   {
     name: 'Wall Slide',
     target: 'Flexion + Scapular Upward Rotation',
     dose: '2 × 10',
     frequency: 'פעם ביום',
-    why: 'שילוב בין טווח הכתף לתנועת השכמה.',
-    video: 'https://www.youtube.com/results?search_query=shoulder+wall+slide+physical+therapy'
+    why: 'משלב תנועה של הזרוע והשכמה ומאפשר לתרגל הרמה באופן נשלט.',
+    execution: 'מחליקים את הידיים על הקיר כלפי מעלה תוך שמירה על נשימה ותנועה חלקה.',
+    video: 'https://www.youtube.com/results?search_query=shoulder+wall+slide+exercise'
   },
   {
-    name: 'Open Book / Thoracic Rotation',
+    name: 'Open Book',
     target: 'Thoracic Rotation',
     dose: '2 × 10 לכל צד',
     frequency: 'פעם ביום',
-    why: 'שיפור תנועת בית החזה שיכולה להשפיע על תנועה מעל הראש.',
-    video: 'https://www.youtube.com/watch?v=OW6YHlxY6JI'
+    why: 'שיפור תנועת בית החזה שיכולה להשפיע על היכולת להגיע מעל הראש.',
+    execution: 'שוכבים על הצד עם ברכיים כפופות ומסובבים את בית החזה והזרוע העליונה לאחור בלי להזיז את האגן.',
+    video: 'https://www.youtube.com/results?search_query=open+book+thoracic+rotation+exercise'
   },
   {
     name: 'Cross Body Shoulder Stretch',
     target: 'Posterior Shoulder',
     dose: '2–3 × 30 שניות',
     frequency: 'פעם ביום',
-    why: 'עבודה על טווח אופקי אחורי כאשר קיימת מגבלה רלוונטית.',
-    video: 'https://www.youtube.com/results?search_query=cross+body+shoulder+stretch+physiotherapy'
+    why: 'יכול להתאים כאשר קיימת מגבלה בתנועה אופקית או תחושת נוקשות בחלק האחורי של הכתף.',
+    execution: 'מקרבים את הזרוע לרוחב החזה בעזרת היד השנייה, בלי לסובב את כל הגוף.',
+    video: 'https://www.youtube.com/results?search_query=cross+body+shoulder+stretch'
   },
   {
     name: 'Doorway Pec Stretch',
     target: 'Pectoralis',
     dose: '2–3 × 30 שניות',
     frequency: 'פעם ביום',
-    why: 'עבודה על רקמות קדמיות כאשר הן מגבילות את מנח חגורת הכתפיים או הטווח.',
-    video: 'https://www.youtube.com/watch?v=HcUrOtmzphg'
-  }
-] as const;
-
-export const phases = [
-  {
-    number: '01',
-    eyebrow: 'שלב 1',
-    title: 'החזרת טווח תנועה',
-    summary: 'החזרת טווח תנועה ושליטה בסיסית ללא החמרה בתסמינים.',
-    criteria: ['טווח פעיל ≥ 90% מהצד השני', 'כאב בזמן ביצוע ≤ 3/10', 'אין החמרה מעבר ל־24 שעות'],
-    exercises: [
-      ['Shoulder Flexion Assisted', '2 × 12', 'פעם ביום'],
-      ['Wall Slide', '2 × 10', 'פעם ביום'],
-      ['Thoracic Rotation', '2 × 10 לכל צד', 'פעם ביום'],
-      ['Cross Body Mobility', '3 × 30 שנ׳', 'פעם ביום'],
-      ['Pec Stretch', '3 × 30 שנ׳', 'פעם ביום']
-    ]
-  },
-  {
-    number: '02',
-    eyebrow: 'שלב 2',
-    title: 'בניית שליטה',
-    summary: 'בניית שליטה וכוח של השרוול המסובב, הדלתואיד ומייצבי השכמה.',
-    criteria: ['טווח פעיל סימטרי', 'כאב בזמן עבודה ≤ 2/10', 'ER: ‏3 × 15 בשליטה מלאה', 'Push-Up Plus: ‏3 × 15 באיכות מלאה'],
-    exercises: [
-      ['External Rotation Isometric', '4 × 30 שנ׳', '3× בשבוע'],
-      ['Band External Rotation', '3 × 12', '3× בשבוע'],
-      ['Band Row', '3 × 12', '3× בשבוע'],
-      ['Serratus Wall Slide', '3 × 10', '3× בשבוע'],
-      ['Scaption', '3 × 10', '3× בשבוע'],
-      ['Push-Up Plus', '3 × 12', '3× בשבוע']
-    ]
-  },
-  {
-    number: '03',
-    eyebrow: 'שלב 3',
-    title: 'בניית יכולת',
-    summary: 'הגדלת יכולת הכתף להתמודד עם התנגדות, נפח וטווחים מלאים.',
-    criteria: ['כאב ≤ 2/10 במהלך העבודה', 'אין ירידה בטווח למחרת', 'התקדמות של 5–10% בעומס בכל פעם'],
-    exercises: [
-      ['Dumbbell Scaption', '3 × 8–12', '3× בשבוע'],
-      ['Cable / Band External Rotation', '3 × 10–15', '3× בשבוע'],
-      ['Single Arm Row', '3 × 8–12', '3× בשבוע'],
-      ['Incline Push-Up', '3 × 8–12', '3× בשבוע'],
-      ['Landmine Press', '3 × 8–12', '3× בשבוע'],
-      ['Farmer Carry', '3 × 30–60 שנ׳', '2–3× בשבוע']
-    ]
+    why: 'יכול להתאים כאשר רקמות קדמיות מגבילות את מנח חגורת הכתפיים או את הטווח.',
+    execution: 'מניחים אמה על המשקוף ומסובבים את הגוף בעדינות עד שמרגישים מתיחה בחזה.',
+    video: 'https://www.youtube.com/results?search_query=doorway+pec+stretch'
   }
 ] as const;
 
 export const exerciseLibrary = [
   ['Shoulder Flexion Assisted', 'Mobility', 'כתף', '2 × 12', 'פעם ביום'],
   ['Wall Slide', 'Mobility', 'כתף', '2 × 10', 'פעם ביום'],
-  ['Thoracic Rotation', 'Mobility', 'בית חזה', '2 × 10/צד', 'פעם ביום'],
-  ['Cross Body Mobility', 'Mobility', 'כתף', '3 × 30 שנ׳', 'פעם ביום'],
-  ['Pec Stretch', 'Mobility', 'חזה', '3 × 30 שנ׳', 'פעם ביום'],
-  ['External Rotation Isometric', 'Strength', 'Rotator Cuff', '4 × 30 שנ׳', '3× בשבוע'],
-  ['Band External Rotation', 'Strength', 'Rotator Cuff', '3 × 12', '3× בשבוע'],
-  ['Band Row', 'Strength', 'Scapula', '3 × 12', '3× בשבוע'],
-  ['Serratus Wall Slide', 'Control', 'Scapula', '3 × 10', '3× בשבוע'],
-  ['Scaption', 'Strength', 'Shoulder', '3 × 10', '3× בשבוע'],
-  ['Push-Up Plus', 'Control', 'Serratus', '3 × 12', '3× בשבוע'],
-  ['Farmer Carry', 'Capacity', 'Shoulder', '3 × 30–60 שנ׳', '2–3× בשבוע']
+  ['Open Book', 'Mobility', 'בית חזה', '2 × 10 לכל צד', 'פעם ביום'],
+  ['Cross Body Shoulder Stretch', 'Mobility', 'כתף', '2–3 × 30 שניות', 'פעם ביום'],
+  ['Doorway Pec Stretch', 'Mobility', 'חזה', '2–3 × 30 שניות', 'פעם ביום'],
+  ['External Rotation Isometric', 'Strength', 'Rotator Cuff', '4 × 30 שניות', '3 פעמים בשבוע'],
+  ['Band External Rotation', 'Strength', 'Rotator Cuff', '3 × 12–15', '3 פעמים בשבוע'],
+  ['Serratus Wall Slide', 'Control', 'Scapula', '3 × 10', '3 פעמים בשבוע'],
+  ['Scaption', 'Strength', 'Shoulder', '3 × 10–12', '3 פעמים בשבוע'],
+  ['Push-Up Plus', 'Control', 'Serratus Anterior', '3 × 10–15', '3 פעמים בשבוע'],
+  ['Single Arm Row', 'Strength', 'Scapula', '3 × 8–12', '3 פעמים בשבוע']
 ] as const;
