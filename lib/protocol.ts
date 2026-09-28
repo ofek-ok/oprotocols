@@ -1,6 +1,6 @@
 export const anatomyMap = [
   {
-    number: 1,
+    number: '1',
     name: 'Clavicle',
     hebrew: 'עצם הבריח',
     type: 'עצם',
@@ -8,76 +8,88 @@ export const anatomyMap = [
     position: { top: '18%', left: '47%' }
   },
   {
-    number: 2,
+    number: '2',
     name: 'Acromion',
     hebrew: 'אקרומיון',
     type: 'עצם',
     description: 'שלוחה של השכמה שיוצרת את החלק העליון של הכתף ומתחברת לעצם הבריח.',
-    position: { top: '28%', left: '57%' }
+    position: { top: '27%', left: '59%' }
   },
   {
-    number: 3,
+    number: '3',
     name: 'Humerus',
     hebrew: 'עצם הזרוע',
     type: 'עצם',
     description: 'ראש עצם הזרוע יוצר עם השכמה את מפרק הכתף המרכזי.',
-    position: { top: '65%', left: '57%' }
+    position: { top: '67%', left: '58%' }
   },
   {
-    number: 4,
+    number: '4',
     name: 'Rotator Cuff',
     hebrew: 'השרוול המסובב',
     type: 'קבוצת שרירים',
-    description: 'קבוצה של ארבעה שרירים — Supraspinatus, Infraspinatus, Teres Minor ו־Subscapularis. יחד הם מייצבים את ראש עצם הזרוע בתוך המפרק ומאפשרים שליטה מדויקת בזמן הרמה, סיבוב והעמסה.',
+    description: 'קבוצה של ארבעה שרירים שעוטפים את מפרק הכתף. יחד הם מייצבים את ראש עצם הזרוע בתוך המפרק ומאפשרים שליטה מדויקת בזמן הרמה, סיבוב והעמסה.',
     position: { top: '39%', left: '51%' }
   },
   {
-    number: 5,
+    number: '4.1',
+    parent: '4',
+    name: 'Supraspinatus',
+    hebrew: 'סופרה־ספינטוס',
+    type: 'שריר',
+    description: 'עובר בחלק העליון של השכמה ומסייע בתחילת הרמת הזרוע ובייצוב ראש עצם הזרוע.',
+    position: { top: '30%', left: '47%' }
+  },
+  {
+    number: '4.2',
+    parent: '4',
+    name: 'Infraspinatus',
+    hebrew: 'אינפרה־ספינטוס',
+    type: 'שריר',
+    description: 'נמצא בחלק האחורי של השכמה. מסייע בעיקר ב־External Rotation ובשליטה האחורית של ראש הזרוע.',
+    position: { top: '43%', left: '42%' }
+  },
+  {
+    number: '4.3',
+    parent: '4',
+    name: 'Teres Minor',
+    hebrew: 'טרס מינור',
+    type: 'שריר',
+    description: 'שריר קטן בחלק האחורי של הכתף. מסייע ב־External Rotation ובייצוב המפרק בזמן תנועה.',
+    position: { top: '49%', left: '45%' }
+  },
+  {
+    number: '4.4',
+    parent: '4',
+    name: 'Subscapularis',
+    hebrew: 'סאב־סקפולריס',
+    type: 'שריר',
+    description: 'נמצא בצד הקדמי של השכמה. מבצע בעיקר Internal Rotation ותורם ליציבות הקדמית של מפרק הכתף.',
+    position: { top: '44%', left: '54%' }
+  },
+  {
+    number: '5',
     name: 'Deltoid',
     hebrew: 'שריר הדלתואיד',
     type: 'שריר',
     description: 'השריר הגדול שעוטף את הכתף. אחראי בעיקר על הרמת הזרוע ופועל יחד עם ה־Rotator Cuff.',
-    position: { top: '42%', left: '70%' }
+    position: { top: '43%', left: '70%' }
   },
   {
-    number: 6,
-    name: 'Supraspinatus',
-    hebrew: 'סופרה־ספינטוס',
-    type: 'שריר',
-    description: 'אחד מארבעת שרירי ה־Rotator Cuff. מסייע בתחילת הרמת הזרוע ובייצוב ראש הזרוע.',
-    position: { top: '31%', left: '48%' }
-  },
-  {
-    number: 7,
-    name: 'Infraspinatus / Teres Minor',
-    hebrew: 'אינפרה־ספינטוס וטרס מינור',
-    type: 'שרירים',
-    description: 'שני שרירים מתוך ה־Rotator Cuff. מבצעים בעיקר External Rotation ותורמים ליציבות ולשליטה בחלק האחורי של הכתף.',
-    position: { top: '46%', left: '43%' }
-  },
-  {
-    number: 8,
-    name: 'Subscapularis',
-    hebrew: 'סאב־סקפולריס',
-    type: 'שריר',
-    description: 'השריר הקדמי של ה־Rotator Cuff. מבצע בעיקר Internal Rotation ותורם ליציבות קדמית.',
-    position: { top: '45%', left: '53%' }
-  },
-  {
-    number: 9,
+    number: '6',
     name: 'Long Head of Biceps',
     hebrew: 'הגיד הארוך של הבייספס',
     type: 'גיד',
     description: 'עובר בחלק הקדמי של הכתף ומשתתף בתפקוד הכתף והמרפק.',
-    position: { top: '53%', left: '61%' }
+    position: { top: '54%', left: '62%' }
   },
   {
-    number: 10,
+    number: '7',
     name: 'Glenohumeral Ligaments',
     hebrew: 'רצועות המפרק',
     type: 'רצועות',
     description: 'מסייעות לייצב את ראש הזרוע ולרסן תנועה עודפת בקצוות הטווח.',
-    position: { top: '38%', left: '56%' }
+    position: { top: '37%', left: '58%' }
   }
 ] as const;
 
