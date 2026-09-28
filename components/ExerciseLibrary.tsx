@@ -110,7 +110,7 @@ export default function ExerciseLibrary() {
               <article key={name} className="exercise-card">
                 <div className="exercise-card-top">
                   <div>
-                    <small>{type}</small>
+                    <small>{filterLabels[type as keyof typeof filterLabels] ?? type}</small>
                     <span>{area}</span>
                   </div>
                   <div className="ex-no">{String(i + 1).padStart(2,'0')}</div>
