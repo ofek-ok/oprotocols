@@ -25,6 +25,7 @@ const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL || '#booking';
 export default function ProtocolShell() {
   const [active, setActive] = useState('overview');
   const [mobileProtocolsOpen, setMobileProtocolsOpen] = useState(false);
+  const [guideSticky, setGuideSticky] = useState(false);
   const progress = useMemo(
     () => sections.findIndex(([id]) => id === active) + 1,
     [active]
@@ -48,6 +49,19 @@ export default function ProtocolShell() {
     });
 
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const guide = document.getElementById('guide-nav-anchor');
+    if (!guide) return;
+
+    const stickyObserver = new IntersectionObserver(
+      ([entry]) => setGuideSticky(!entry.isIntersecting),
+      { rootMargin: `-${68}px 0px 0px 0px`, threshold: 0 }
+    );
+
+    stickyObserver.observe(guide);
+    return () => stickyObserver.disconnect();
   }, []);
 
   const jumpTo = (id: string) => {
@@ -114,33 +128,33 @@ export default function ProtocolShell() {
 
         <div className="content-inner">
           <section className="hero" id="overview">
-            <div>
+            <div className="hero-copy-simple">
               <p className="eyebrow">פרוטוקול כתף</p>
-              <h1>להבין את הכתף.<br />לטפל נכון.<br />לבנות אותה חזרה.</h1>
+              <h1>פרוטוקול כתף</h1>
               <p className="hero-lead">
-                מדריך מסודר להבנת המבנה האנטומי של הכתף, אפשרויות הטיפול,
-                החיזוק והמוביליטי. המטרה היא לתת תמונה ברורה של מה קורה בכתף
-                ומה עושים כדי להחזיר תנועה, כוח ויכולת.
+                מדריך מעשי להבנת האנטומיה של הכתף, אפשרויות הטיפול,
+                תרגילי החיזוק והמוביליטי.
               </p>
               <div className="hero-actions">
-                <button onClick={() => jumpTo('anatomy')}>לאנטומיה</button>
+                <button onClick={() => jumpTo('anatomy')}>התחל מהאנטומיה</button>
                 <a href={BOOKING_URL}>קביעת טיפול</a>
               </div>
             </div>
-            <div className="hero-summary">
+
+            <div className="hero-guide" id="guide-nav-anchor">
               <h2>מה תמצא כאן</h2>
-              <ul>
-                <li>מבנה הכתף והמרכיבים החשובים</li>
-                <li>מה התפקיד של השרירים, הגידים והרצועות</li>
-                <li>אילו אפשרויות טיפול קיימות ומתי משתמשים בהן</li>
-                <li>תרגילי חיזוק עם מינון והסבר ביצוע</li>
-                <li>תרגילי מוביליטי עם סרטוני הדגמה</li>
-              </ul>
+              <div className="hero-guide-links">
+                {sections.slice(1).map(([id, label]) => (
+                  <button key={id} onClick={() => jumpTo(id)}>
+                    {label}
+                  </button>
+                ))}
+              </div>
             </div>
           </section>
 
-          <nav className="section-nav" aria-label="ניווט בתוך הפרוטוקול">
-            {sections.map(([id, label]) => (
+          <nav className={guideSticky ? 'section-nav sticky-visible' : 'section-nav'} aria-label="ניווט בתוך הפרוטוקול">
+            {sections.slice(1).map(([id, label]) => (
               <button
                 key={id}
                 onClick={() => jumpTo(id)}
