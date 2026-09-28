@@ -244,13 +244,17 @@ export default function ProtocolShell() {
 
               <div className="rotator-focus-image">
                 <Image
-                  src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Shoulder_joint.svg"
-                  alt="איור אנטומי של שרירי השרוול המסובב"
+                  src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Shoulder_joint_bf.svg"
+                  alt="איור אנטומי קדמי ואחורי של מפרק הכתף והשרוול המסובב"
                   fill
                   unoptimized
                   sizes="(max-width: 900px) 100vw, 42vw"
                 />
-                <small>איור אנטומי: NIAMS / Wikimedia Commons</small>
+                <div className="rotator-image-legend">
+                  <span><b>מבט אחורי:</b> Supraspinatus · Infraspinatus · Teres Minor</span>
+                  <span><b>מבט קדמי:</b> Subscapularis</span>
+                </div>
+                <small>איור: Jmarchn / Wikimedia Commons · CC BY-SA 3.0</small>
               </div>
             </section>
           </section>
