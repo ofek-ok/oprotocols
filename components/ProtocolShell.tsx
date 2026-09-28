@@ -129,7 +129,6 @@ export default function ProtocolShell() {
         <div className="content-inner">
           <section className="hero" id="overview">
             <div className="hero-copy-simple">
-              <p className="eyebrow">פרוטוקול כתף</p>
               <h1>פרוטוקול כתף</h1>
               <p className="hero-lead">
                 מדריך מעשי להבנת האנטומיה של הכתף, אפשרויות הטיפול,
