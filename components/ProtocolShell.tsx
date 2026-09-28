@@ -204,6 +204,7 @@ export default function ProtocolShell() {
                         <h3>{item.hebrew}</h3>
                         <small>{item.name}</small>
                       </div>
+                      <div className="anatomy-type">{item.type}</div>
                       <p>{item.description}</p>
                     </div>
                   </article>
