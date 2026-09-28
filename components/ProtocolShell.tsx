@@ -244,7 +244,7 @@ export default function ProtocolShell() {
 
               <div className="rotator-focus-image">
                 <Image
-                  src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Shoulder_joint_bf.svg"
+                  src="https://upload.wikimedia.org/wikipedia/commons/6/68/Rotator_cuff_muscles.svg"
                   alt="איור אנטומי קדמי ואחורי של מפרק הכתף והשרוול המסובב"
                   fill
                   unoptimized
@@ -254,7 +254,7 @@ export default function ProtocolShell() {
                   <span><b>מבט אחורי:</b> Supraspinatus · Infraspinatus · Teres Minor</span>
                   <span><b>מבט קדמי:</b> Subscapularis</span>
                 </div>
-                <small>איור: Jmarchn / Wikimedia Commons · CC BY-SA 3.0</small>
+                <small>איור: InjuryMap / Wikimedia Commons · CC BY-SA 4.0</small>
               </div>
             </section>
           </section>
