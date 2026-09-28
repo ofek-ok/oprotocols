@@ -97,3 +97,72 @@ footer{display:flex;align-items:center;gap:11px;margin-top:46px;padding-top:22px
   .traffic{grid-template-columns:1fr}.library-page{width:min(calc(100% - 28px),var(--content-max));padding-top:26px}.library-hero{flex-direction:column}.library-hero h1{font-size:38px}.back{width:100%;text-align:center}.exercise-card{min-height:0}
   .topbar{height:var(--header)}.brand-text strong{font-size:14px}.brand-text span{font-size:9px}.status-pill{display:none}
 }
+
+
+/* Expanded shoulder guide */
+.anatomy-layout.expanded{margin-bottom:16px}
+.anatomy-copy h4{font-size:24px;margin:8px 0 10px}
+.anatomy-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.anatomy-group{background:linear-gradient(180deg,#10171f,#0b1117);border:1px solid #263644;border-radius:10px;overflow:hidden}
+.anatomy-group-head{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid #202d39}
+.anatomy-group-head span{font-size:10px;color:#4f91d1;direction:ltr}.anatomy-group-head h4{margin:0;font-size:17px}
+.anatomy-structure-list>div{padding:14px 18px;border-top:1px solid #1b2732}.anatomy-structure-list>div:first-child{border-top:0}
+.anatomy-structure-list strong{display:block;direction:ltr;text-align:right;color:#7eb8ee;font-size:12px;margin-bottom:5px}
+.anatomy-structure-list p{margin:0;color:#aab6c4;font-size:12px;line-height:1.65}
+
+.treatment-intro{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-bottom:16px}
+.treatment-intro>div{background:#0d141b;border:1px solid #263644;border-radius:10px;padding:20px}
+.treatment-intro h4{margin:0 0 8px;font-size:21px}.treatment-intro p{margin:0;color:#aab5c4;font-size:13px;line-height:1.75}
+.treatment-legend{display:grid!important;grid-template-columns:auto 1fr!important;gap:9px 12px!important;align-content:center}
+.treatment-legend span{font-size:8px;letter-spacing:.08em;border:1px solid #33485d;border-radius:999px;padding:5px 8px;width:max-content}
+.treatment-legend b{font-size:11px;color:#8fa0b3;font-weight:500;align-self:center}
+.treatment-legend .core{color:#7ad0a6;border-color:rgba(99,184,141,.5);background:rgba(99,184,141,.08)}
+.treatment-legend .adjunct{color:#f0c97a;border-color:rgba(215,171,95,.45);background:rgba(215,171,95,.08)}
+.treatment-legend .clinician{color:#8fc5f8;border-color:rgba(89,165,248,.45);background:rgba(89,165,248,.08)}
+.treatment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.treatment-card{background:linear-gradient(180deg,#111821,#0c1218);border:1px solid #263644;border-radius:10px;padding:20px}
+.treatment-card h4{font-size:18px;margin:12px 0 8px}.treatment-card p{margin:0;color:#a9b5c4;line-height:1.7;font-size:12px}
+.treatment-level{display:inline-flex;font-size:8px;letter-spacing:.09em;border-radius:999px;padding:5px 8px;border:1px solid #36516c;color:#8fc5f8}
+.treatment-level.core{color:#76c99e;border-color:rgba(99,184,141,.45);background:rgba(99,184,141,.06)}
+.treatment-level.adjunct,.treatment-level.core---adjunct{color:#e5bd70;border-color:rgba(215,171,95,.45);background:rgba(215,171,95,.06)}
+.treatment-level.clinician-only{color:#8fc5f8;border-color:rgba(89,165,248,.45);background:rgba(89,165,248,.06)}
+.treatment-level.not-routine{color:#e09a9a;border-color:rgba(214,102,102,.45);background:rgba(214,102,102,.06)}
+
+.booking-card{margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:24px;background:linear-gradient(120deg,#11243a,#0b131c 58%);border:1px solid #315174;border-radius:12px;padding:24px}
+.booking-card small,.final-booking small{font-size:8px;letter-spacing:.14em;color:#77b7f3}.booking-card h4{font-size:23px;margin:7px 0}.booking-card p{margin:0;color:#aab6c5;font-size:12px;line-height:1.65;max-width:720px}
+.booking-card a,.final-booking a{display:inline-flex;align-items:center;justify-content:center;background:#3e6fa8;color:#fff;text-decoration:none;border:1px solid #5a91c8;border-radius:8px;padding:12px 17px;font-size:12px;white-space:nowrap}
+
+.exercise-section-intro{display:grid;grid-template-columns:.7fr 1.3fr;gap:16px;align-items:start;margin-bottom:16px;padding:18px 20px;background:#0d141b;border:1px solid #263644;border-radius:10px}
+.exercise-section-intro h4{margin:0;font-size:19px}.exercise-section-intro p{margin:0;color:#9eabba;line-height:1.7;font-size:12px}
+.protocol-exercise-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.protocol-exercise-card{background:linear-gradient(180deg,#111821,#0c1218);border:1px solid #263644;border-radius:10px;padding:18px;display:flex;flex-direction:column;min-height:260px}
+.protocol-exercise-top{display:flex;justify-content:space-between;align-items:center;gap:12px}.protocol-exercise-top>span{color:#365f89;font-size:24px;font-weight:800;direction:ltr}.protocol-exercise-top small{color:#6fa7dd;font-size:9px;letter-spacing:.08em}
+.protocol-exercise-card h4{font-size:17px;direction:ltr;text-align:right;margin:16px 0 8px}.protocol-exercise-card>p{color:#a8b4c3;line-height:1.65;font-size:12px;margin:0 0 16px;flex:1}
+.protocol-exercise-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px solid #24313d;padding-top:12px}.protocol-exercise-meta>div{display:flex;flex-direction:column;gap:4px}.protocol-exercise-meta small{font-size:8px;color:#6f8092}.protocol-exercise-meta strong{font-size:11px;color:#d5dde7}
+.protocol-exercise-card>a{margin-top:14px;padding-top:12px;border-top:1px solid #1e2a35;color:#7fb7ed;text-decoration:none;font-size:10px}
+.protocol-exercise-card>a:hover{color:#b7dcff}
+.mobility-cards .protocol-exercise-card{border-color:#2d4051}
+
+.phase-note{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin:26px 0 12px;padding:16px 18px;border-right:3px solid #3e6fa8;background:#0b1219}
+.phase-note span{font-size:9px;letter-spacing:.14em;color:#6fa7dd;white-space:nowrap}.phase-note p{margin:0;color:#96a4b5;font-size:12px;line-height:1.6}
+.compact-phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.compact-phases .phase-card{display:flex;flex-direction:column}.compact-phases .phase-head{grid-template-columns:48px 1fr;padding:16px;flex:1}.compact-phases .phase-number{font-size:28px}.compact-phases .phase-head h4{font-size:18px}.compact-phases .phase-head p{font-size:11px;line-height:1.5}
+.inline-criteria{border-right:0;border-top:1px solid #202c38}.inline-criteria div{font-size:10px}
+
+.final-booking{margin-top:40px;display:flex;justify-content:space-between;align-items:center;gap:24px;border:1px solid #315174;border-radius:12px;padding:24px;background:radial-gradient(circle at 10% 50%,rgba(62,111,168,.2),transparent 38%),#0b1219}
+.final-booking h3{font-size:24px;margin:6px 0}.final-booking p{margin:0;color:#9eabba;font-size:12px}
+
+@media(max-width:1000px){
+  .anatomy-groups,.treatment-grid{grid-template-columns:1fr}
+  .treatment-intro{grid-template-columns:1fr}
+  .protocol-exercise-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .compact-phases{grid-template-columns:1fr}
+  .exercise-section-intro{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .protocol-exercise-grid{grid-template-columns:1fr}
+  .booking-card,.final-booking{flex-direction:column;align-items:stretch}
+  .booking-card a,.final-booking a{width:100%}
+  .phase-note{flex-direction:column;gap:8px}
+  .anatomy-copy h4{font-size:20px}
+}
