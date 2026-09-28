@@ -25,6 +25,14 @@ export const anatomyMap = [
   },
   {
     number: 4,
+    name: 'Rotator Cuff',
+    hebrew: 'השרוול המסובב',
+    type: 'קבוצת שרירים',
+    description: 'קבוצה של ארבעה שרירים — Supraspinatus, Infraspinatus, Teres Minor ו־Subscapularis. יחד הם מייצבים את ראש עצם הזרוע בתוך המפרק ומאפשרים שליטה מדויקת בזמן הרמה, סיבוב והעמסה.',
+    position: { top: '39%', left: '51%' }
+  },
+  {
+    number: 5,
     name: 'Deltoid',
     hebrew: 'שריר הדלתואיד',
     type: 'שריר',
@@ -32,7 +40,7 @@ export const anatomyMap = [
     position: { top: '42%', left: '70%' }
   },
   {
-    number: 5,
+    number: 6,
     name: 'Supraspinatus',
     hebrew: 'סופרה־ספינטוס',
     type: 'שריר',
@@ -40,23 +48,23 @@ export const anatomyMap = [
     position: { top: '31%', left: '48%' }
   },
   {
-    number: 6,
+    number: 7,
     name: 'Infraspinatus / Teres Minor',
     hebrew: 'אינפרה־ספינטוס וטרס מינור',
     type: 'שרירים',
-    description: 'מבצעים בעיקר External Rotation ותורמים ליציבות ולשליטה בחלק האחורי של הכתף.',
+    description: 'שני שרירים מתוך ה־Rotator Cuff. מבצעים בעיקר External Rotation ותורמים ליציבות ולשליטה בחלק האחורי של הכתף.',
     position: { top: '46%', left: '43%' }
   },
   {
-    number: 7,
+    number: 8,
     name: 'Subscapularis',
     hebrew: 'סאב־סקפולריס',
     type: 'שריר',
-    description: 'החלק הקדמי של ה־Rotator Cuff. מבצע בעיקר Internal Rotation ותורם ליציבות קדמית.',
+    description: 'השריר הקדמי של ה־Rotator Cuff. מבצע בעיקר Internal Rotation ותורם ליציבות קדמית.',
     position: { top: '45%', left: '53%' }
   },
   {
-    number: 8,
+    number: 9,
     name: 'Long Head of Biceps',
     hebrew: 'הגיד הארוך של הבייספס',
     type: 'גיד',
@@ -64,7 +72,7 @@ export const anatomyMap = [
     position: { top: '53%', left: '61%' }
   },
   {
-    number: 9,
+    number: 10,
     name: 'Glenohumeral Ligaments',
     hebrew: 'רצועות המפרק',
     type: 'רצועות',
