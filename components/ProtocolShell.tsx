@@ -17,12 +17,20 @@ const sections = [
   ['treatment', 'טיפול'],
   ['strength', 'חיזוק'],
   ['mobility', 'מוביליטי'],
-  ['load', 'Pain & Load']
+  ['load', 'כאב ועומס']
 ] as const;
 
 const protocols = ['כתף','צוואר','גב תחתון','גב עליון','מרפק','שורש כף יד','ירך','ברך','קרסול'];
 
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL || '#booking';
+
+const treatmentLevelLabels: Record<string, string> = {
+  'CORE': 'ליבת התהליך',
+  'ADJUNCT': 'כלי משלים',
+  'CORE / ADJUNCT': 'ליבה / כלי משלים',
+  'CLINICIAN ONLY': 'מקצועי בלבד',
+  'NOT ROUTINE': 'לא טיפול שגרתי'
+};
 
 export default function ProtocolShell() {
   const [active, setActive] = useState('overview');
@@ -75,16 +83,16 @@ export default function ProtocolShell() {
         </Link>
 
         <nav className="topnav" aria-label="Main navigation">
-          <Link href="/" className="active">Protocols</Link>
-          <Link href="/exercises">Exercises</Link>
-          <span className="nav-coming-soon">Knowledge <em>בקרוב</em></span>
+          <Link href="/" className="active">פרוטוקולים</Link>
+          <Link href="/exercises">תרגילים</Link>
+          <span className="nav-coming-soon">ידע <em>בקרוב</em></span>
         </nav>
 
-        <div className="status-pill">PROTOCOL LIBRARY · V1.0</div>
+        
       </header>
 
       <aside className="sidebar" aria-label="Protocol library">
-        <div className="sidebar-title">PROTOCOL LIBRARY</div>
+        <div className="sidebar-title">פרוטוקולים</div>
         {protocols.map((item, i) => (
           <button
             key={item}
@@ -131,8 +139,8 @@ export default function ProtocolShell() {
         <div className="content-inner">
           <section className="hero" id="overview">
             <div className="hero-copy">
-              <div className="eyebrow">SHOULDER · COMPLETE GUIDE</div>
-              <h1>Shoulder <span>Protocol</span></h1>
+              <div className="eyebrow">כתף · מדריך מקצועי</div>
+              <h1>פרוטוקול <span>כתף</span></h1>
               <h2>להבין את הכתף, לטפל בה ולבנות אותה מחדש</h2>
               <p>
                 מדריך מלא לכתף: המבנה האנטומי, תפקיד השרירים והמפרקים, אפשרויות טיפול,
@@ -146,16 +154,16 @@ export default function ProtocolShell() {
               </div>
 
               <div className="hero-metrics">
-                <div><strong>01</strong><span>Understand</span></div>
-                <div><strong>02</strong><span>Treat</span></div>
-                <div><strong>03</strong><span>Build</span></div>
+                <div><strong>01</strong><span>הבנה</span></div>
+                <div><strong>02</strong><span>טיפול</span></div>
+                <div><strong>03</strong><span>בנייה מחדש</span></div>
               </div>
             </div>
 
             <aside className="hero-summary" aria-label="Protocol summary">
-              <div className="summary-kicker">IN THIS GUIDE</div>
+              <div className="summary-kicker">מה כולל המדריך</div>
               <div className="summary-row"><span>אנטומיה</span><strong>עצמות · מפרקים · שרירים</strong></div>
-              <div className="summary-row"><span>טיפול</span><strong>Core + Adjunct</strong></div>
+              <div className="summary-row"><span>טיפול</span><strong>ליבה + כלים משלימים</strong></div>
               <div className="summary-row"><span>חיזוק</span><strong>{strengthExercises.length} תרגילים</strong></div>
               <div className="summary-row"><span>מוביליטי</span><strong>{mobilityExercises.length} תרגילים</strong></div>
               <button onClick={() => jumpTo('strength')}>עבור לתרגילים</button>
@@ -178,7 +186,7 @@ export default function ProtocolShell() {
 
           <section className="overview-grid">
             <article className="panel statement-panel">
-              <div className="panel-kicker">WHAT THE SHOULDER NEEDS</div>
+              <div className="panel-kicker">מה הכתף צריכה</div>
               <h3>תנועה + שליטה + כוח + עומס</h3>
               <p>
                 הכתף בנויה לטווח תנועה גדול. כדי שהיא תעבוד היטב היא צריכה שילוב בין
@@ -191,7 +199,7 @@ export default function ProtocolShell() {
             </article>
 
             <article className="panel rules-panel">
-              <div className="panel-kicker">IMPORTANT</div>
+              <div className="panel-kicker">עיקרון חשוב</div>
               <h3>אין טיפול אחד שמתאים לכולם</h3>
               <p>
                 כאב כתף יכול להגיע ממקורות שונים ולהגיב אחרת לעומס. טיפול טוב מתחיל
@@ -203,7 +211,7 @@ export default function ProtocolShell() {
           <section className="protocol-section" id="anatomy">
             <div className="section-heading">
               <span>02</span>
-              <div><small>UNDERSTAND THE SYSTEM</small><h3>אנטומיית הכתף</h3></div>
+              <div><small>הבנת המבנה</small><h3>אנטומיית הכתף</h3></div>
             </div>
 
             <div className="anatomy-layout expanded">
@@ -218,7 +226,7 @@ export default function ProtocolShell() {
               </div>
 
               <div className="anatomy-copy">
-                <div className="panel-kicker">THE SHOULDER COMPLEX</div>
+                <div className="panel-kicker">מבנה הכתף</div>
                 <h4>לא מפרק אחד — מערכת שלמה</h4>
                 <p>
                   הכתף היא מערכת שמחברת בין הזרוע, השכמה, עצם הבריח ובית החזה.
@@ -251,7 +259,7 @@ export default function ProtocolShell() {
           <section className="protocol-section" id="treatment">
             <div className="section-heading">
               <span>03</span>
-              <div><small>TREATMENT OPTIONS</small><h3>איך מטפלים בכתף?</h3></div>
+              <div><small>אפשרויות טיפול</small><h3>איך מטפלים בכתף?</h3></div>
             </div>
 
             <div className="treatment-intro">
@@ -264,9 +272,9 @@ export default function ProtocolShell() {
                 </p>
               </div>
               <div className="treatment-legend">
-                <span className="core">CORE</span><b>ליבת התהליך</b>
-                <span className="adjunct">ADJUNCT</span><b>כלי משלים</b>
-                <span className="clinician">CLINICIAN ONLY</span><b>ביצוע מקצועי בלבד</b>
+                <span className="core">ליבת התהליך</span><b>המרכיב המרכזי</b>
+                <span className="adjunct">כלי משלים</span><b>תוספת לפי צורך</b>
+                <span className="clinician">מקצועי בלבד</span><b>לביצוע על ידי איש מקצוע מוסמך</b>
               </div>
             </div>
 
@@ -274,7 +282,7 @@ export default function ProtocolShell() {
               {treatmentOptions.map((item) => (
                 <article className="treatment-card" key={item.title}>
                   <span className={'treatment-level ' + item.level.toLowerCase().replaceAll(' ','-').replaceAll('/','-')}>
-                    {item.level}
+                    {treatmentLevelLabels[item.level] ?? item.level}
                   </span>
                   <h4>{item.title}</h4>
                   <p>{item.text}</p>
@@ -284,7 +292,7 @@ export default function ProtocolShell() {
 
             <div className="booking-card" id="booking">
               <div>
-                <small>OKONSKI PERFORMANCE · SHOULDER ASSESSMENT</small>
+                <small>OKONSKI PERFORMANCE · הערכת כתף</small>
                 <h4>רוצה לבדוק מה מגביל את הכתף שלך?</h4>
                 <p>
                   טיפול מתחיל בהערכה של תנועה, כוח ותגובה לעומס, ולאחריה בניית תוכנית
@@ -298,7 +306,7 @@ export default function ProtocolShell() {
           <section className="protocol-section" id="strength">
             <div className="section-heading">
               <span>04</span>
-              <div><small>BUILD CAPACITY</small><h3>חיזוק הכתף</h3></div>
+              <div><small>בניית כוח ויכולת</small><h3>חיזוק הכתף</h3></div>
             </div>
 
             <div className="exercise-section-intro">
@@ -328,7 +336,7 @@ export default function ProtocolShell() {
             </div>
 
             <div className="phase-note">
-              <span>CLINICAL PROGRESSION</span>
+              <span>התקדמות קלינית</span>
               <p>
                 ככל שהשליטה והכוח משתפרים, עוברים בהדרגה מהפעלת כוח בסיסית לעומס,
                 טווח, נפח ומהירות גבוהים יותר.
@@ -358,7 +366,7 @@ export default function ProtocolShell() {
           <section className="protocol-section" id="mobility">
             <div className="section-heading">
               <span>05</span>
-              <div><small>RESTORE RANGE</small><h3>מוביליטי וגמישות לכתף</h3></div>
+              <div><small>החזרת טווח תנועה</small><h3>מוביליטי וגמישות לכתף</h3></div>
             </div>
 
             <div className="exercise-section-intro">
@@ -390,8 +398,8 @@ export default function ProtocolShell() {
 
           <section className="protocol-section load-grid" id="load">
             <article className="panel pain-panel">
-              <div className="panel-kicker">PAIN MONITORING</div>
-              <h3>Traffic Light System</h3>
+              <div className="panel-kicker">מעקב כאב</div>
+              <h3>שיטת הרמזור</h3>
               <div className="traffic">
                 <div className="green"><b>0–2/10</b><span>ממשיכים</span></div>
                 <div className="yellow"><b>3/10</b><span>ממשיכים רק אם יציב וללא החמרה</span></div>
@@ -400,7 +408,7 @@ export default function ProtocolShell() {
             </article>
 
             <article className="panel">
-              <div className="panel-kicker">24-HOUR RULE</div>
+              <div className="panel-kicker">כלל 24 השעות</div>
               <h3>המינון הבא נקבע גם לפי מחר</h3>
               <p>
                 אם הכאב גבוה ביותר מ־2 נקודות מה־baseline, הטווח ירד או הפעילות
@@ -412,7 +420,7 @@ export default function ProtocolShell() {
 
           <div className="final-booking">
             <div>
-              <small>ASSESS. RECOVER. PERFORM.</small>
+              <small>OKONSKI PERFORMANCE</small>
               <h3>לא בטוח מאיפה להתחיל?</h3>
               <p>הערכה מסודרת מאפשרת לבחור את הטיפול והתרגילים לפי הכתף שלך.</p>
             </div>
@@ -423,7 +431,7 @@ export default function ProtocolShell() {
             <Image src="/assets/logo.png" alt="OKONSKI Performance" width={34} height={34}/>
             <span>OKONSKI PERFORMANCE</span>
             <i />
-            <small>CLINICAL PRECISION. PEAK PERFORMANCE.</small>
+            <small>טיפול מדויק. תנועה טובה יותר. ביצועים טובים יותר.</small>
           </footer>
         </div>
       </main>
