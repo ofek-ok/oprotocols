@@ -1451,3 +1451,123 @@ button{color:inherit}
     grid-template-columns:1fr;
   }
 }
+
+
+/* Visual anatomy orientation maps */
+.anatomy-visual-pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:14px;
+}
+.anatomy-map-card{
+  border:1px solid #e2e8ed;
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+}
+.anatomy-map-image{
+  position:relative;
+  min-height:280px;
+  background:#f7f9fb;
+}
+.anatomy-map-image img{
+  object-fit:contain;
+  padding:16px;
+}
+.anatomy-map-copy{
+  padding:12px 14px 14px;
+  border-top:1px solid #e8edf1;
+}
+.anatomy-map-copy strong{
+  display:block;
+  color:#2c4051;
+  font-size:13px;
+}
+.anatomy-map-copy span{
+  display:block;
+  margin-top:5px;
+  color:#687582;
+  font-size:10.5px;
+  line-height:1.55;
+}
+.anatomy-location-map{
+  display:grid;
+  grid-template-columns:minmax(280px,.9fr) 1.1fr;
+  gap:14px;
+  margin-bottom:14px;
+  border:1px solid #e1e7ec;
+  border-radius:12px;
+  overflow:hidden;
+  background:#fbfcfd;
+}
+.anatomy-location-image{
+  position:relative;
+  min-height:390px;
+  background:#fff;
+  border-left:1px solid #e6ebef;
+}
+.anatomy-location-image img{
+  object-fit:contain;
+  padding:14px;
+}
+.anatomy-location-guide{
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.anatomy-location-guide>span{
+  color:#7a8794;
+  font-size:10px;
+  font-weight:700;
+}
+.anatomy-location-guide h4{
+  margin:5px 0 8px;
+  color:#2c4051;
+  font-size:16px;
+}
+.anatomy-location-guide p{
+  margin:0;
+  color:#64717f;
+  font-size:11px;
+  line-height:1.7;
+}
+.anatomy-location-chips{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.anatomy-location-chips b{
+  direction:ltr;
+  font-size:9px;
+  font-weight:700;
+  color:#466783;
+  background:#eef4f8;
+  border:1px solid #d8e4ed;
+  border-radius:999px;
+  padding:5px 8px;
+}
+@media(max-width:800px){
+  .anatomy-visual-pair,
+  .anatomy-location-map{
+    grid-template-columns:1fr;
+  }
+  .anatomy-location-image{
+    border-left:0;
+    border-bottom:1px solid #e6ebef;
+    min-height:340px;
+  }
+}
+@media(max-width:620px){
+  .anatomy-map-image{
+    min-height:240px;
+  }
+  .anatomy-location-image{
+    min-height:300px;
+  }
+  .anatomy-location-guide{
+    padding:16px;
+  }
+}
