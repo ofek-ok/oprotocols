@@ -2,139 +2,587 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
-import { phases } from '@/lib/protocol';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  anatomyMap,
+  anteriorShoulderMuscles,
+  mobilityExercises,
+  posteriorShoulderMuscles,
+  shoulderFunction,
+  shoulderStructure,
+  strengthExercises,
+  treatmentOptions
+} from '@/lib/protocol';
 
 const sections = [
   ['overview', 'סקירה'],
   ['anatomy', 'אנטומיה'],
-  ['assessment', 'Assessment'],
-  ['phases', 'שלבי הפרוטוקול'],
-  ['load', 'Pain & Load'],
-  ['discharge', 'Discharge']
-];
+  ['treatment', 'טיפול'],
+  ['strength', 'חיזוק'],
+  ['mobility', 'מוביליטי']
+] as const;
+
+const protocols = ['כתף','צוואר','גב תחתון','גב עליון','מרפק','שורש כף יד','ירך','ברך','קרסול'];
+
+const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL || '#booking';
 
 export default function ProtocolShell() {
   const [active, setActive] = useState('overview');
-  const progress = useMemo(() => sections.findIndex(([id]) => id === active) + 1, [active]);
+  const [mobileProtocolsOpen, setMobileProtocolsOpen] = useState(false);
+  const [guideSticky, setGuideSticky] = useState(false);
+  const progress = useMemo(
+    () => sections.findIndex(([id]) => id === active) + 1,
+    [active]
+  );
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible?.target?.id) setActive(visible.target.id);
+      },
+      { rootMargin: '-135px 0px -55% 0px', threshold: [0.15, 0.35, 0.6] }
+    );
+
+    sections.forEach(([id]) => {
+      const node = document.getElementById(id);
+      if (node) observer.observe(node);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const guide = document.getElementById('guide-nav-anchor');
+    if (!guide) return;
+
+    const stickyObserver = new IntersectionObserver(
+      ([entry]) => setGuideSticky(!entry.isIntersecting),
+      { rootMargin: `-${68}px 0px 0px 0px`, threshold: 0 }
+    );
+
+    stickyObserver.observe(guide);
+    return () => stickyObserver.disconnect();
+  }, []);
+
+  const jumpTo = (id: string) => {
+    setActive(id);
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
     <div className="app-shell">
       <header className="topbar">
-        <div className="brand-lockup">
-          <Image src="/assets/logo.png" alt="OKONSKI Performance" width={48} height={48} className="logo" priority />
-          <div className="brand-text"><strong>OKONSKI</strong><span>PERFORMANCE</span></div>
-        </div>
-        <nav className="topnav">
-          <Link href="/">Protocols</Link>
-          <Link href="/exercises">Exercises</Link>
-          <span>Knowledge</span>
+        <Link href="/" className="brand-lockup" aria-label="OKONSKI Performance">
+          <Image src="/assets/logo.png" alt="OKONSKI Performance" width={40} height={40} className="logo" priority />
+          <div className="brand-text">
+            <strong>OKONSKI</strong>
+            <span>PERFORMANCE</span>
+          </div>
+        </Link>
+
+        <nav className="topnav" aria-label="ניווט ראשי">
+          <Link href="/" className="active">פרוטוקולים</Link>
+          <Link href="/exercises">תרגילים</Link>
+          <span>ידע <em>בקרוב</em></span>
         </nav>
-        <div className="status-pill">PROTOCOL LIBRARY · V1.0</div>
       </header>
 
-      <aside className="sidebar">
-        <div className="sidebar-title">PROTOCOL LIBRARY</div>
-        {['כתף','צוואר','גב תחתון','גב עליון','מרפק','שורש כף יד','ירך','ברך','קרסול'].map((item, i) => (
-          <button key={item} className={i === 0 ? 'side-item active' : 'side-item'}>
-            <span className="body-icon">{i === 0 ? '◉' : '○'}</span><span>{item}</span><span className="side-arrow">←</span>
+      <aside className="sidebar" aria-label="ספריית פרוטוקולים">
+        <div className="sidebar-title">פרוטוקולים</div>
+        {protocols.map((item, i) => (
+          <button
+            key={item}
+            className={i === 0 ? 'side-item active' : 'side-item disabled'}
+            disabled={i !== 0}
+            aria-current={i === 0 ? 'page' : undefined}
+          >
+            <span>{item}</span>
+            {i !== 0 && <small>בקרוב</small>}
           </button>
         ))}
-        <div className="sidebar-card"><span>CLINICAL PRECISION.</span><span>PEAK PERFORMANCE.</span><i /></div>
       </aside>
 
       <main className="content">
-        <section className="hero" id="overview">
-          <div className="hero-copy">
-            <div className="eyebrow">SHOULDER · MASTER PROTOCOL</div>
-            <h1>Shoulder <span>Protocol</span></h1>
-            <h2>פרוטוקול כתף — החזרת תנועה, שליטה ויכולת העמסה</h2>
-            <p>פרוטוקול קליני סדור המבוסס על מדדים אובייקטיביים. ההתקדמות מתבצעת לפי קריטריונים ברורים ולא לפי זמן בלבד.</p>
-            <div className="hero-metrics">
-              <div><strong>01</strong><span>Restore Motion</span></div>
-              <div><strong>02</strong><span>Build Control</span></div>
-              <div><strong>03</strong><span>Build Capacity</span></div>
-            </div>
-          </div>
-          <div className="hero-visual">
-            <Image src="/assets/shoulder-anatomy.png" alt="Shoulder anatomy" fill priority sizes="(max-width: 900px) 100vw, 48vw" />
-            <div className="visual-gradient" />
-            <div className="anatomy-tags">
-              <span style={{top:'17%',right:'10%'}}>Clavicle</span>
-              <span style={{top:'36%',right:'4%'}}>Rotator Cuff</span>
-              <span style={{top:'56%',right:'13%'}}>Biceps Tendon</span>
-              <span style={{top:'72%',right:'24%'}}>Humerus</span>
-            </div>
-          </div>
-        </section>
+        <div className="mobile-protocol-bar">
+          <button
+            type="button"
+            onClick={() => setMobileProtocolsOpen((v) => !v)}
+            aria-expanded={mobileProtocolsOpen}
+          >
+            <span>פרוטוקול</span>
+            <strong>כתף</strong>
+            <b>{mobileProtocolsOpen ? '×' : '☰'}</b>
+          </button>
 
-        <div className="section-nav" aria-label="Protocol sections">
-          {sections.map(([id,label], idx) => <button key={id} onClick={() => {setActive(id); document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});}} className={active === id ? 'active' : ''}><b>{String(idx+1).padStart(2,'0')}</b>{label}</button>)}
+          {mobileProtocolsOpen && (
+            <div className="mobile-protocol-menu">
+              {protocols.map((item, i) => (
+                <div key={item} className={i === 0 ? 'current' : 'upcoming'}>
+                  <span>{item}</span>
+                  <small>{i === 0 ? 'פעיל' : 'בקרוב'}</small>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
-        <section className="overview-grid">
-          <article className="panel statement-panel">
-            <div className="panel-kicker">TARGET OUTCOME</div>
-            <h3>הגדרת הצלחה</h3>
-            <p>טווח תנועה מלא וסימטרי, כאב שאינו מגביל תפקוד, יכולת הפקת כוח וסבילות לעומס ללא החמרה ב־24 השעות שלאחר הפעילות.</p>
-            <div className="outcome-flow"><span>MOVE</span><i>→</i><span>CONTROL</span><i>→</i><span>LOAD</span><i>→</i><span>PERFORM</span></div>
-          </article>
-          <article className="panel rules-panel">
-            <div className="panel-kicker">NON-NEGOTIABLES</div>
-            <h3>כללי עבודה</h3>
-            <ul><li>אין מעבר שלב ללא קריטריוני יציאה.</li><li>לא משנים יותר ממשתנה עומס אחד בכל פעם.</li><li>תגובת 24 שעות קובעת את המינון הבא.</li><li>תוכנית בית: עד 5 תרגילים.</li></ul>
-          </article>
-        </section>
-
-        <section className="anatomy-section" id="anatomy">
-          <div className="section-heading"><span>01</span><div><small>UNDERSTAND THE SYSTEM</small><h3>אנטומיית הכתף</h3></div></div>
-          <div className="anatomy-layout">
-            <div className="anatomy-image"><Image src="/assets/shoulder-anatomy.png" alt="Shoulder anatomy illustration" fill sizes="50vw" /></div>
-            <div className="anatomy-copy">
-              <p>הכתף היא מערכת משולבת של מפרקים, עצמות, גידים, רצועות ושרירים. מטרת ההערכה אינה למצוא "מבנה אשם" אלא להבין מה מגביל תנועה, כוח ויכולת העמסה.</p>
-              <div className="anatomy-list">
-                {[['Glenohumeral Joint','מפרק הכתף העיקרי'],['Rotator Cuff','ארבעה שרירים המייצבים ומכוונים את ראש הזרוע'],['Scapula','בסיס התנועה של חגורת הכתפיים'],['Labrum & Capsule','מבנים התורמים ליציבות'],['Biceps Tendon','גיד העובר בחלק הקדמי של הכתף']].map(([a,b]) => <div key={a}><strong>{a}</strong><span>{b}</span></div>)}
+        <div className="content-inner">
+          <section className="hero" id="overview">
+            <div className="hero-copy-simple">
+              <h1>פרוטוקול כתף</h1>
+              <p className="hero-lead">
+                מדריך מעשי להבנת האנטומיה של הכתף, אפשרויות הטיפול,
+                תרגילי החיזוק והמוביליטי.
+              </p>
+              <div className="hero-actions">
+                <button onClick={() => jumpTo('anatomy')}>התחל מהאנטומיה</button>
+                <a href={BOOKING_URL}>קביעת טיפול</a>
               </div>
             </div>
-          </div>
-        </section>
 
-        <section id="assessment">
-          <div className="section-heading"><span>02</span><div><small>BASELINE</small><h3>Entry Assessment</h3></div></div>
-          <div className="assessment-grid">
-            {[['PAIN','מנוחה, תנועה, לילה, מיקום ותגובה לעומס'],['ROM','Flexion · Abduction · ER · IR'],['STRENGTH','ER · IR · Scaption · Push · Pull'],['CONTROL','הרמה, הורדה, Upward Rotation, Winging'],['FUNCTION','פעולות מוגדרות שהלקוח רוצה לבצע ללא הגבלה'],['24H RESPONSE','תגובה באותו יום ובבוקר שאחרי']].map(([title,text]) => <article className="metric-card" key={title}><small>{title}</small><p>{text}</p></article>)}
-          </div>
-          <div className="alert-panel"><strong>STOP / REFER</strong><span>טראומה משמעותית עם ירידה מיידית בתפקוד · עיוות ברור · חשד לפריקה · אובדן כוח חדש · סימנים נוירולוגיים חדשים · סימנים מערכתיים חריגים</span></div>
-        </section>
-
-        <section id="phases">
-          <div className="section-heading"><span>03</span><div><small>PROGRESSION</small><h3>שלבי הפרוטוקול</h3></div></div>
-          <div className="phase-stack">
-            {phases.map((phase) => <article className="phase-card" key={phase.number}>
-              <div className="phase-head"><div className="phase-number">{phase.number}</div><div><small>{phase.eyebrow}</small><h4>{phase.title}</h4><p>{phase.summary}</p></div></div>
-              <div className="phase-body">
-                <div className="exercise-table"><div className="table-row table-head"><span>Exercise</span><span>Dosage</span><span>Frequency</span></div>{phase.exercises.map(([name,dose,freq]) => <div className="table-row" key={name}><span>{name}</span><span>{dose}</span><span>{freq}</span></div>)}</div>
-                <div className="criteria"><small>EXIT CRITERIA</small>{phase.criteria.map(c => <div key={c}>✓ {c}</div>)}</div>
+            <div className="hero-guide" id="guide-nav-anchor">
+              <h2>מה תמצא כאן</h2>
+              <div className="hero-guide-links">
+                {sections.slice(1).map(([id, label]) => (
+                  <button key={id} onClick={() => jumpTo(id)}>
+                    {label}
+                  </button>
+                ))}
               </div>
-            </article>)}
+            </div>
+          </section>
+
+          <nav className={guideSticky ? 'section-nav sticky-visible' : 'section-nav'} aria-label="ניווט בתוך הפרוטוקול">
+            {sections.slice(1).map(([id, label]) => (
+              <button
+                key={id}
+                onClick={() => jumpTo(id)}
+                className={active === id ? 'active' : ''}
+              >
+                {label}
+              </button>
+            ))}
+          </nav>
+
+          <section className="protocol-section" id="anatomy">
+            <div className="section-heading">
+              <div>
+                <span>01</span>
+                <h2>אנטומיית הכתף</h2>
+                <p>
+                  הכתף היא מערכת של עצמות, מפרקים, שרירים, גידים ורצועות שעובדים יחד.
+                  כדי להבין אותה באמת, צריך להכיר גם את המבנה וגם את הדרך שבה כל החלקים משתפים פעולה.
+                </p>
+              </div>
+            </div>
+
+            <div className="anatomy-block">
+              <div className="anatomy-block-heading">
+                <span>1</span>
+                <div>
+                  <h3>מבנה הכתף</h3>
+                  <p>העצמות, המפרקים והמבנים הפסיביים שמרכיבים את הבסיס של מערכת הכתף.</p>
+                </div>
+              </div>
+
+              <div className="anatomy-stage simple-anatomy">
+                <div className="anatomy-figure">
+                  <Image
+                    src="/assets/shoulder-anatomy.png"
+                    alt="איור אנטומי של הכתף"
+                    fill
+                    sizes="(max-width: 900px) 100vw, 50vw"
+                    priority
+                  />
+                  {anatomyMap
+                    .filter((item) => ['1','2','3','5'].includes(String(item.number)))
+                    .map((item) => (
+                      <span
+                        className="anatomy-label-marker"
+                        key={item.number}
+                        style={{ top: item.position.top, left: item.position.left }}
+                      >
+                        {item.label}
+                      </span>
+                    ))}
+                </div>
+
+                <div className="anatomy-overview-copy">
+                  <div className="anatomy-overview-group">
+                    <h4>עצמות ומבנים גרמיים</h4>
+                    {shoulderStructure.bones.map((item) => (
+                      <article key={item.name}>
+                        <strong>{item.hebrew}</strong>
+                        <small>{item.name}</small>
+                        <p>{item.text}</p>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="anatomy-visual-pair">
+                <article className="anatomy-map-card">
+                  <div className="anatomy-map-image">
+                    <Image
+                      src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Shoulder_anatomy.svg"
+                      alt="מפת אנטומיה של הכתף הכוללת עצמות, לברום והשרוול המסובב"
+                      fill
+                      unoptimized
+                      sizes="(max-width: 800px) 100vw, 50vw"
+                    />
+                  </div>
+                  <div className="anatomy-map-copy">
+                    <strong>מפת מבנה הכתף</strong>
+                    <span>חפש באיור: עצם הבריח, השכמה, ראש הזרוע, הלברום והשרוול המסובב.</span>
+                  </div>
+                </article>
+
+                <article className="anatomy-map-card">
+                  <div className="anatomy-map-image">
+                    <Image
+                      src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Bursae_shoulder_joint_normal.jpg"
+                      alt="מפת הבורסות סביב מפרק הכתף"
+                      fill
+                      unoptimized
+                      sizes="(max-width: 800px) 100vw, 50vw"
+                    />
+                  </div>
+                  <div className="anatomy-map-copy">
+                    <strong>בורסות ומבנים סביב המפרק</strong>
+                    <span>האיור עוזר למקם את הבורסה התת־אקרומיאלית ביחס לעצמות ולרקמות הסובבות.</span>
+                  </div>
+                </article>
+              </div>
+
+              <div className="anatomy-info-grid">
+                <div className="anatomy-overview-group">
+                  <h4>המפרקים של הכתף</h4>
+                  {shoulderStructure.joints.map((item) => (
+                    <article key={item.name}>
+                      <strong>{item.hebrew}</strong>
+                      <small>{item.name}</small>
+                      <p>{item.text}</p>
+                    </article>
+                  ))}
+                </div>
+
+                <div className="anatomy-overview-group">
+                  <h4>קופסית, לברום, רצועות ובורסה</h4>
+                  {shoulderStructure.passive.map((item) => (
+                    <article key={item.name}>
+                      <strong>{item.hebrew}</strong>
+                      <small>{item.name}</small>
+                      <p>{item.text}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="anatomy-block">
+              <div className="anatomy-block-heading">
+                <span>2</span>
+                <div>
+                  <h3>השרוול המסובב</h3>
+                  <p>
+                    ארבעה שרירים עמוקים שעוטפים את מפרק הכתף ומייצבים את ראש עצם הזרוע בזמן תנועה ועומס.
+                  </p>
+                </div>
+              </div>
+
+              <div className="rotator-muscle-grid">
+                {[
+                  {
+                    name: 'Supraspinatus',
+                    hebrew: 'סופרה־ספינטוס',
+                    view: 'מבט מאחור',
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Supraspinatus_muscle_back.png',
+                    description: 'נמצא מעל קוץ השכמה. מסייע בתחילת הרמת הזרוע ותורם לייצוב ראש עצם הזרוע.'
+                  },
+                  {
+                    name: 'Infraspinatus',
+                    hebrew: 'אינפרה־ספינטוס',
+                    view: 'מבט מאחור',
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/Infraspinatus_muscle_back.png',
+                    description: 'נמצא מתחת לקוץ השכמה. אחד השרירים המרכזיים בסיבוב חיצוני של הזרוע.'
+                  },
+                  {
+                    name: 'Teres Minor',
+                    hebrew: 'טרס מינור',
+                    view: 'מבט מאחור',
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/7/75/Teres_minor_muscle_back.png',
+                    description: 'נמצא מתחת לאינפרה־ספינטוס. מסייע בסיבוב חיצוני ובייצוב האחורי של המפרק.'
+                  },
+                  {
+                    name: 'Subscapularis',
+                    hebrew: 'סאב־סקפולריס',
+                    view: 'מבט מלפנים',
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Subscapularis_muscle_frontal2.png',
+                    description: 'נמצא על המשטח הקדמי של השכמה. מבצע בעיקר סיבוב פנימי ותורם ליציבות הקדמית.'
+                  }
+                ].map((muscle) => (
+                  <article className="rotator-muscle-card" key={muscle.name}>
+                    <div className="rotator-muscle-visual">
+                      <Image
+                        src={muscle.src}
+                        alt={`${muscle.name} מודגש באדום`}
+                        fill
+                        unoptimized
+                        sizes="(max-width: 620px) 100vw, (max-width: 1000px) 50vw, 25vw"
+                      />
+                    </div>
+                    <div className="rotator-muscle-card-copy">
+                      <small>{muscle.view}</small>
+                      <strong>{muscle.name}</strong>
+                      <span>{muscle.hebrew}</span>
+                      <p>{muscle.description}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="rotator-source">
+                השריר המודגש באדום · BodyParts3D / Anatomography · Wikimedia Commons
+              </div>
+            </div>
+
+            <div className="anatomy-block">
+              <div className="anatomy-block-heading">
+                <span>3</span>
+                <div>
+                  <h3>החלק הקדמי של הכתף</h3>
+                  <p>השרירים והגידים שמייצרים תנועה, כוח ויציבות בחלק הקדמי של חגורת הכתפיים.</p>
+                </div>
+              </div>
+
+              <div className="anatomy-location-map">
+                <div className="anatomy-location-image">
+                  <Image
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Arm_muscles_front_superficial.png"
+                    alt="מבט קדמי על שרירי הכתף והזרוע"
+                    fill
+                    unoptimized
+                    sizes="(max-width: 800px) 100vw, 42vw"
+                  />
+                </div>
+                <div className="anatomy-location-guide">
+                  <span>מפה קדמית</span>
+                  <h4>איפה לחפש את השרירים?</h4>
+                  <p>
+                    התחל מהדלתואיד שעוטף את הכתף, עבור לחזה הגדול שמתחבר לעצם הזרוע,
+                    ולאחר מכן לבייספס בחלק הקדמי של הזרוע. השרירים העמוקים יותר, כמו
+                    Subscapularis ו־Pectoralis Minor, נמצאים מתחת לשכבות השטחיות.
+                  </p>
+                  <div className="anatomy-location-chips">
+                    <b>Deltoid</b>
+                    <b>Pectoralis Major</b>
+                    <b>Biceps</b>
+                    <b>Serratus Anterior</b>
+                  </div>
+                </div>
+              </div>
+
+              <div className="muscle-detail-grid">
+                {anteriorShoulderMuscles.map((item) => (
+                  <article key={item.name}>
+                    <div className="muscle-detail-title">
+                      <strong>{item.hebrew}</strong>
+                      <small>{item.name}</small>
+                    </div>
+                    <p><b>איפה נמצא:</b> {item.location}</p>
+                    <p><b>מה הוא עושה:</b> {item.function}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="anatomy-block">
+              <div className="anatomy-block-heading">
+                <span>4</span>
+                <div>
+                  <h3>החלק האחורי והשכמה</h3>
+                  <p>השרירים שמייצבים את השכמה, שולטים במנח שלה ומייצרים תנועות משיכה וסיבוב.</p>
+                </div>
+              </div>
+
+              <div className="anatomy-location-map">
+                <div className="anatomy-location-image">
+                  <Image
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Gray409.png"
+                    alt="מבט אחורי על שרירי הכתף והשכמה"
+                    fill
+                    unoptimized
+                    sizes="(max-width: 800px) 100vw, 42vw"
+                  />
+                </div>
+                <div className="anatomy-location-guide">
+                  <span>מפה אחורית</span>
+                  <h4>איפה לחפש את השרירים?</h4>
+                  <p>
+                    קוץ השכמה הוא נקודת התמצאות מרכזית: Supraspinatus מעליו,
+                    Infraspinatus מתחתיו ו־Teres Minor נמוך יותר. Trapezius ו־Rhomboids
+                    מחברים את השכמה לצוואר ולעמוד השדרה, ו־Latissimus Dorsi נמצא נמוך יותר בגב.
+                  </p>
+                  <div className="anatomy-location-chips">
+                    <b>Trapezius</b>
+                    <b>Infraspinatus</b>
+                    <b>Teres Minor</b>
+                    <b>Rhomboids</b>
+                    <b>Latissimus Dorsi</b>
+                  </div>
+                </div>
+              </div>
+
+              <div className="muscle-detail-grid">
+                {posteriorShoulderMuscles.map((item) => (
+                  <article key={item.name}>
+                    <div className="muscle-detail-title">
+                      <strong>{item.hebrew}</strong>
+                      <small>{item.name}</small>
+                    </div>
+                    <p><b>איפה נמצא:</b> {item.location}</p>
+                    <p><b>מה הוא עושה:</b> {item.function}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="anatomy-block anatomy-function-block">
+              <div className="anatomy-block-heading">
+                <span>5</span>
+                <div>
+                  <h3>איך הכתף עובדת</h3>
+                  <p>הכתף לא פועלת כשריר או מפרק בודד. הביצוע התקין תלוי בתיאום בין כל המערכת.</p>
+                </div>
+              </div>
+
+              <div className="shoulder-function-grid">
+                {shoulderFunction.map((item) => (
+                  <article key={item.title}>
+                    <h4>{item.title}</h4>
+                    <p>{item.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="protocol-section" id="treatment">
+            <div className="section-heading">
+              <div>
+                <span>02</span>
+                <h2>איך מטפלים בכתף?</h2>
+                <p>
+                  לא מתחילים מטכניקה. קודם מבינים מה מגביל את הכתף, ואז בוחרים את הכלים המתאימים.
+                </p>
+              </div>
+            </div>
+
+            <div className="treatment-list">
+              {treatmentOptions.map((item, index) => (
+                <article key={item.title}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="booking-card" id="booking">
+              <div>
+                <h3>רוצה לבדוק מה מגביל את הכתף שלך?</h3>
+                <p>מתחילים בהערכה של תנועה, כוח ותגובה לעומס, ורק אחר כך בונים טיפול ותוכנית תרגול.</p>
+              </div>
+              <a href={BOOKING_URL}>קביעת טיפול</a>
+            </div>
+          </section>
+
+          <section className="protocol-section" id="strength">
+            <div className="section-heading">
+              <div>
+                <span>03</span>
+                <h2>חיזוק הכתף</h2>
+                <p>המטרה היא לבנות כוח ושליטה בהדרגה. לא צריך לבצע את כל התרגילים יחד.</p>
+              </div>
+            </div>
+
+            <div className="exercise-list">
+              {strengthExercises.map((exercise, index) => (
+                <article key={exercise.name}>
+                  <div className="exercise-index">{String(index + 1).padStart(2, '0')}</div>
+                  <div className="exercise-main">
+                    <div className="exercise-title">
+                      <h3>{exercise.name}</h3>
+                      <small>{exercise.target}</small>
+                    </div>
+                    <p>{exercise.why}</p>
+                    <div className="exercise-how">
+                      <strong>איך לבצע</strong>
+                      <span>{exercise.execution}</span>
+                    </div>
+                    <div className="exercise-meta">
+                      <span><small>מינון</small><b>{exercise.dose}</b></span>
+                      <span><small>תדירות</small><b>{exercise.frequency}</b></span>
+                    </div>
+                    <a href={exercise.video} target="_blank" rel="noreferrer">סרטון הדגמה ב־YouTube</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="protocol-section" id="mobility">
+            <div className="section-heading">
+              <div>
+                <span>04</span>
+                <h2>מוביליטי וטווח תנועה</h2>
+                <p>עובדים רק על הטווחים שבאמת מוגבלים או נדרשים לתפקוד.</p>
+              </div>
+            </div>
+
+            <div className="exercise-list">
+              {mobilityExercises.map((exercise, index) => (
+                <article key={exercise.name}>
+                  <div className="exercise-index">{String(index + 1).padStart(2, '0')}</div>
+                  <div className="exercise-main">
+                    <div className="exercise-title">
+                      <h3>{exercise.name}</h3>
+                      <small>{exercise.target}</small>
+                    </div>
+                    <p>{exercise.why}</p>
+                    <div className="exercise-how">
+                      <strong>איך לבצע</strong>
+                      <span>{exercise.execution}</span>
+                    </div>
+                    <div className="exercise-meta">
+                      <span><small>מינון</small><b>{exercise.dose}</b></span>
+                      <span><small>תדירות</small><b>{exercise.frequency}</b></span>
+                    </div>
+                    <a href={exercise.video} target="_blank" rel="noreferrer">סרטון הדגמה ב־YouTube</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <div className="final-booking">
+            <div>
+              <h2>צריך עזרה עם הכתף?</h2>
+              <p>אפשר להתחיל בהערכה מסודרת ולבנות תוכנית לפי מה שהכתף שלך באמת צריכה.</p>
+            </div>
+            <a href={BOOKING_URL}>קביעת טיפול</a>
           </div>
-        </section>
-
-        <section className="load-grid" id="load">
-          <article className="panel pain-panel"><div className="panel-kicker">PAIN MONITORING</div><h3>Traffic Light System</h3><div className="traffic"><div className="green"><b>0–2/10</b><span>ממשיכים</span></div><div className="yellow"><b>3/10</b><span>ממשיכים רק אם יציב וללא החמרה</span></div><div className="red"><b>4+/10</b><span>מורידים Load → Range → Volume</span></div></div></article>
-          <article className="panel"><div className="panel-kicker">24-HOUR RULE</div><h3>המינון הבא נקבע מחר</h3><p>אם הכאב גבוה ביותר מ־2 נקודות מה־baseline, הטווח ירד או הפעילות היומיומית קשה יותר — העומס הקודם היה גבוה מדי.</p><div className="big-rule">−20–30% <span>Volume / Resistance</span></div></article>
-        </section>
-
-        <section id="discharge">
-          <div className="section-heading"><span>04</span><div><small>ENDPOINT</small><h3>Discharge Criteria</h3></div></div>
-          <div className="discharge-card">
-            {['טווח תנועה מלא וסימטרי','כאב במנוחה 0/10','כאב בתנועה רגילה 0–1/10','אין כאב שמגביל שינה','אין מגבלה בפעולות שהוגדרו בתחילת התהליך','אין פער תפקודי משמעותי בכוח','עומס מלא אינו גורם להחמרה ב־24 שעות','הלקוח מנהל עומס באופן עצמאי'].map((x,i) => <div key={x}><span>{String(i+1).padStart(2,'0')}</span><p>{x}</p></div>)}
-          </div>
-        </section>
-
-        <footer><Image src="/assets/logo.png" alt="OKONSKI Performance" width={34} height={34}/><span>OKONSKI PERFORMANCE</span><i/> <small>CLINICAL PRECISION. PEAK PERFORMANCE.</small></footer>
+        </div>
       </main>
-      <div className="page-progress" style={{width:`${(progress/sections.length)*100}%`}} />
+
+      <div className="page-progress" style={{ width: `${(progress / sections.length) * 100}%` }} />
     </div>
   );
 }
