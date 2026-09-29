@@ -225,6 +225,40 @@ export default function ProtocolShell() {
                 </div>
               </div>
 
+              <div className="anatomy-visual-pair">
+                <article className="anatomy-map-card">
+                  <div className="anatomy-map-image">
+                    <Image
+                      src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Shoulder_anatomy.svg"
+                      alt="מפת אנטומיה של הכתף הכוללת עצמות, לברום והשרוול המסובב"
+                      fill
+                      unoptimized
+                      sizes="(max-width: 800px) 100vw, 50vw"
+                    />
+                  </div>
+                  <div className="anatomy-map-copy">
+                    <strong>מפת מבנה הכתף</strong>
+                    <span>חפש באיור: עצם הבריח, השכמה, ראש הזרוע, הלברום והשרוול המסובב.</span>
+                  </div>
+                </article>
+
+                <article className="anatomy-map-card">
+                  <div className="anatomy-map-image">
+                    <Image
+                      src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Bursae_shoulder_joint_normal.jpg"
+                      alt="מפת הבורסות סביב מפרק הכתף"
+                      fill
+                      unoptimized
+                      sizes="(max-width: 800px) 100vw, 50vw"
+                    />
+                  </div>
+                  <div className="anatomy-map-copy">
+                    <strong>בורסות ומבנים סביב המפרק</strong>
+                    <span>האיור עוזר למקם את הבורסה התת־אקרומיאלית ביחס לעצמות ולרקמות הסובבות.</span>
+                  </div>
+                </article>
+              </div>
+
               <div className="anatomy-info-grid">
                 <div className="anatomy-overview-group">
                   <h4>המפרקים של הכתף</h4>
@@ -326,6 +360,33 @@ export default function ProtocolShell() {
                 </div>
               </div>
 
+              <div className="anatomy-location-map">
+                <div className="anatomy-location-image">
+                  <Image
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Arm_muscles_front_superficial.png"
+                    alt="מבט קדמי על שרירי הכתף והזרוע"
+                    fill
+                    unoptimized
+                    sizes="(max-width: 800px) 100vw, 42vw"
+                  />
+                </div>
+                <div className="anatomy-location-guide">
+                  <span>מפה קדמית</span>
+                  <h4>איפה לחפש את השרירים?</h4>
+                  <p>
+                    התחל מהדלתואיד שעוטף את הכתף, עבור לחזה הגדול שמתחבר לעצם הזרוע,
+                    ולאחר מכן לבייספס בחלק הקדמי של הזרוע. השרירים העמוקים יותר, כמו
+                    Subscapularis ו־Pectoralis Minor, נמצאים מתחת לשכבות השטחיות.
+                  </p>
+                  <div className="anatomy-location-chips">
+                    <b>Deltoid</b>
+                    <b>Pectoralis Major</b>
+                    <b>Biceps</b>
+                    <b>Serratus Anterior</b>
+                  </div>
+                </div>
+              </div>
+
               <div className="muscle-detail-grid">
                 {anteriorShoulderMuscles.map((item) => (
                   <article key={item.name}>
@@ -346,6 +407,34 @@ export default function ProtocolShell() {
                 <div>
                   <h3>החלק האחורי והשכמה</h3>
                   <p>השרירים שמייצבים את השכמה, שולטים במנח שלה ומייצרים תנועות משיכה וסיבוב.</p>
+                </div>
+              </div>
+
+              <div className="anatomy-location-map">
+                <div className="anatomy-location-image">
+                  <Image
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Gray409.png"
+                    alt="מבט אחורי על שרירי הכתף והשכמה"
+                    fill
+                    unoptimized
+                    sizes="(max-width: 800px) 100vw, 42vw"
+                  />
+                </div>
+                <div className="anatomy-location-guide">
+                  <span>מפה אחורית</span>
+                  <h4>איפה לחפש את השרירים?</h4>
+                  <p>
+                    קוץ השכמה הוא נקודת התמצאות מרכזית: Supraspinatus מעליו,
+                    Infraspinatus מתחתיו ו־Teres Minor נמוך יותר. Trapezius ו־Rhomboids
+                    מחברים את השכמה לצוואר ולעמוד השדרה, ו־Latissimus Dorsi נמצא נמוך יותר בגב.
+                  </p>
+                  <div className="anatomy-location-chips">
+                    <b>Trapezius</b>
+                    <b>Infraspinatus</b>
+                    <b>Teres Minor</b>
+                    <b>Rhomboids</b>
+                    <b>Latissimus Dorsi</b>
+                  </div>
                 </div>
               </div>
 
