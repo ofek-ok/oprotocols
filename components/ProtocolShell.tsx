@@ -360,31 +360,49 @@ export default function ProtocolShell() {
                 </div>
               </div>
 
-              <div className="anatomy-location-map">
-                <div className="anatomy-location-image">
-                  <Image
-                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Arm_muscles_front_superficial.png"
-                    alt="מבט קדמי על שרירי הכתף והזרוע"
-                    fill
-                    unoptimized
-                    sizes="(max-width: 800px) 100vw, 42vw"
-                  />
-                </div>
-                <div className="anatomy-location-guide">
-                  <span>מפה קדמית</span>
-                  <h4>איפה לחפש את השרירים?</h4>
-                  <p>
-                    התחל מהדלתואיד שעוטף את הכתף, עבור לחזה הגדול שמתחבר לעצם הזרוע,
-                    ולאחר מכן לבייספס בחלק הקדמי של הזרוע. השרירים העמוקים יותר, כמו
-                    Subscapularis ו־Pectoralis Minor, נמצאים מתחת לשכבות השטחיות.
-                  </p>
-                  <div className="anatomy-location-chips">
-                    <b>Deltoid</b>
-                    <b>Pectoralis Major</b>
-                    <b>Biceps</b>
-                    <b>Serratus Anterior</b>
+              <div className="anatomy-map-duo">
+                <article className="annotated-anatomy-card">
+                  <div className="annotated-anatomy-head">
+                    <span>מבט קדמי · שכבה שטחית</span>
+                    <p>הסימונים מראים את השרירים שניתן לראות מבחוץ.</p>
                   </div>
-                </div>
+                  <div className="annotated-anatomy-image front-superficial-map">
+                    <Image
+                      src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Arm_muscles_front_superficial.png"
+                      alt="מבט קדמי שטחי על שרירי הכתף והזרוע"
+                      fill
+                      unoptimized
+                      sizes="(max-width: 800px) 100vw, 50vw"
+                    />
+                    <span className="body-callout" style={{ top: '20%', left: '68%' }}>דלתואיד</span>
+                    <span className="body-callout" style={{ top: '36%', left: '35%' }}>Pectoralis Major</span>
+                    <span className="body-callout" style={{ top: '62%', left: '77%' }}>Biceps Brachii</span>
+                  </div>
+                </article>
+
+                <article className="annotated-anatomy-card">
+                  <div className="annotated-anatomy-head">
+                    <span>מבט קדמי · שכבה עמוקה</span>
+                    <p>כאן רואים מבנים שנמצאים מתחת לשרירים השטחיים.</p>
+                  </div>
+                  <div className="annotated-anatomy-image front-deep-map">
+                    <Image
+                      src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Arm_muscles_front_deep.png"
+                      alt="מבט קדמי עמוק על שרירי הכתף והזרוע"
+                      fill
+                      unoptimized
+                      sizes="(max-width: 800px) 100vw, 50vw"
+                    />
+                    <span className="body-callout" style={{ top: '24%', left: '30%' }}>Pectoralis Minor</span>
+                    <span className="body-callout" style={{ top: '31%', left: '57%' }}>Subscapularis</span>
+                    <span className="body-callout" style={{ top: '54%', left: '67%' }}>Coracobrachialis</span>
+                  </div>
+                </article>
+              </div>
+
+              <div className="anatomy-note">
+                <strong>Serratus Anterior</strong>
+                <span>נמצא לאורך הצלעות בצד בית החזה ומתחבר לשכמה. הוא עמוק בחלקו ולכן לא תמיד נראה במלואו במבט קדמי שטחי.</span>
               </div>
 
               <div className="muscle-detail-grid">
@@ -410,32 +428,31 @@ export default function ProtocolShell() {
                 </div>
               </div>
 
-              <div className="anatomy-location-map">
-                <div className="anatomy-location-image">
+              <article className="annotated-anatomy-card posterior-map-card">
+                <div className="annotated-anatomy-head">
+                  <span>מבט אחורי · השכמה והזרוע</span>
+                  <p>הסימונים יושבים ישירות על האזור האנטומי הרלוונטי.</p>
+                </div>
+                <div className="annotated-anatomy-image posterior-map">
                   <Image
-                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Gray409.png"
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Arm_muscles_back.png"
                     alt="מבט אחורי על שרירי הכתף והשכמה"
                     fill
                     unoptimized
-                    sizes="(max-width: 800px) 100vw, 42vw"
+                    sizes="(max-width: 800px) 100vw, 70vw"
                   />
+                  <span className="body-callout" style={{ top: '19%', left: '42%' }}>Supraspinatus</span>
+                  <span className="body-callout" style={{ top: '35%', left: '43%' }}>Infraspinatus</span>
+                  <span className="body-callout" style={{ top: '47%', left: '49%' }}>Teres Minor</span>
+                  <span className="body-callout" style={{ top: '56%', left: '47%' }}>Teres Major</span>
+                  <span className="body-callout" style={{ top: '69%', left: '28%' }}>Latissimus Dorsi</span>
+                  <span className="body-callout" style={{ top: '58%', left: '72%' }}>Triceps · Long Head</span>
                 </div>
-                <div className="anatomy-location-guide">
-                  <span>מפה אחורית</span>
-                  <h4>איפה לחפש את השרירים?</h4>
-                  <p>
-                    קוץ השכמה הוא נקודת התמצאות מרכזית: Supraspinatus מעליו,
-                    Infraspinatus מתחתיו ו־Teres Minor נמוך יותר. Trapezius ו־Rhomboids
-                    מחברים את השכמה לצוואר ולעמוד השדרה, ו־Latissimus Dorsi נמצא נמוך יותר בגב.
-                  </p>
-                  <div className="anatomy-location-chips">
-                    <b>Trapezius</b>
-                    <b>Infraspinatus</b>
-                    <b>Teres Minor</b>
-                    <b>Rhomboids</b>
-                    <b>Latissimus Dorsi</b>
-                  </div>
-                </div>
+              </article>
+
+              <div className="anatomy-note">
+                <strong>Trapezius, Rhomboids ו־Levator Scapulae</strong>
+                <span>אלו שרירי השכמה והגב העליון. הם נמצאים מדיאלית לשכמה ומעליה, ולכן מוצגים בטקסט כמערכת נפרדת ולא נדחסים על אותו איור.</span>
               </div>
 
               <div className="muscle-detail-grid">
